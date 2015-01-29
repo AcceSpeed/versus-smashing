@@ -1,2 +1,2 @@
-# versus-mashing
+# versus-smashing
 ETML Training Project
