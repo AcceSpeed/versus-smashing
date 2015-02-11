@@ -6,6 +6,7 @@ public class NetworkManager : MonoBehaviour {
 	private const string typeName = "VerSmaTESTINGPHASE";
 	private const string gameName = "VerSmaRoomOne";
 	private const string gameCom = "RoomComment";
+	public GameObject playerPrefab;
 
 	private HostData[] hostList;
 
@@ -28,7 +29,7 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnServerInitialized()
 	{
-		Debug.Log("Server Initializied");
+		SpawnPlayer();
 	}
 
 	void OnMasterServerEvent(MasterServerEvent msEvent)
@@ -39,7 +40,12 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnConnectedToServer()
 	{
-		Debug.Log("Server Joined");
+		SpawnPlayer();
+	}
+
+	private void SpawnPlayer()
+	{
+		Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
 	}
 
 	void OnGUI()
