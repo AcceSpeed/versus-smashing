@@ -1,0 +1,24 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=0
+d3d11: failed to create D3D11 device (0x887a0004)
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 9.0c [vm3dum.dll 7.14.1.1211]
+    Renderer: VMware SVGA 3D
+    Vendor:   VMWare
+    VRAM:     1152 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=0 NativeShadow=1 DF16=0 INTZ=0 RAWZ=0 NULL=0 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.083 seconds
+<RI> Initializing input.
+XInput1_3.dll not found.
+<RI> Input initialized.
+desktop: 1680x1050 60Hz; virtual: 2960x1050 at 0,0
+Platform assembly: C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\System.dll (this message is harmless)
