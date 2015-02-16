@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d2ff655f5348aae4f9eb7b70ea97956f
+guid: b045f4f478a33634c99cd2aacf586a39
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -34,8 +34,8 @@ ModelImporter:
     100056: RightLeg 1
     100058: ShoulderLeft
     100060: ShoulderRight
-    100062: Torso
-    100064: //RootNode
+    100062: //RootNode
+    100064: Torso
     400000: Armature
     400002: Chest
     400004: Head
@@ -67,8 +67,8 @@ ModelImporter:
     400056: RightLeg 1
     400058: ShoulderLeft
     400060: ShoulderRight
-    400062: Torso
-    400064: //RootNode
+    400062: //RootNode
+    400064: Torso
     4300000: Head
     4300002: RightArm
     4300004: RightFoArm
@@ -138,7 +138,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     motionNodeName: 
     animationCompression: 1
     animationRotationError: .5
