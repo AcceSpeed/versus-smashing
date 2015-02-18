@@ -1,4 +1,20 @@
-﻿using UnityEngine;
+﻿//*********************************************************
+// Societe: ETML
+// Auteur : Miguel Dias
+// Date : 13.02.2015
+// But : option class file
+//*********************************************************
+// Modifications:
+// Date : 
+// Auteur : 
+// Raison : 
+//*********************************************************
+// Date :
+// Auteur :
+// Raison :
+//********************************************************* 
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -10,37 +26,52 @@ public class SettingsFunction : MonoBehaviour {
 	public Toggle tglFullscreen;
 
 	// display of the value for the settings
-	public Text strVolume;
-	public Text strResolution;
+	public Text txtVolume;
+	public Text txtResolution;
 
 	// resolution of the game
 	private int intScreenWidth;
 	private int intScreenHeight;
-
 	private Resolution[] arr_resolutions ;
 
 	void Start (){
-		arr_resolutions = Screen.resolutions;
+		arr_resolutions = Screen.resolutions;					// Get all avaliable resolutions
+		sldResolution.maxValue = arr_resolutions.Length - 1;	// Set the maximum of slide
 
-		sldResolution.maxValue = arr_resolutions.Length - 1;
-
+		// default resolution to minimal
 		Screen.SetResolution (arr_resolutions [0].width, arr_resolutions [0].height, false);
-		strResolution.text = arr_resolutions [0].width + "x" + arr_resolutions [0].height;	
+		txtResolution.text = arr_resolutions [0].width + "x" + arr_resolutions [0].height;	
 	}
 
+	// *******************************************************************
+	// Nom : ChangeVolume
+	// But : change the volume
+	// Retour: Void
+	// Param.: None
+	// ******************************************************************* 
 	public void ChangeVolume (){
+
+		// change the global volume
 		AudioListener.volume = sldVolume.value / 100;
 
-		strVolume.text = sldVolume.value.ToString();
+		txtVolume.text = sldVolume.value.ToString();
 	}
 
+	// *******************************************************************
+	// Nom : ChangeResolution
+	// But : change the resolution
+	// Retour: Void
+	// Param.: None
+	// *******************************************************************
 	public void ChangeResolution (){
 
 		intScreenWidth = arr_resolutions [(int) sldResolution.value].width;
 		intScreenHeight = arr_resolutions [(int) sldResolution.value].height;
 
+		// set the resolution
 		Screen.SetResolution (intScreenWidth, intScreenHeight, tglFullscreen.isOn);
 
-		strResolution.text = intScreenWidth + "x" + intScreenHeight;
+		// change the label value
+		txtResolution.text = intScreenWidth + "x" + intScreenHeight;
 	}
 }
