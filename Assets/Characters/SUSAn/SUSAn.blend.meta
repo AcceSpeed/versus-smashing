@@ -117,7 +117,1811 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Clock
+      takeName: Clock
+      firstFrame: -1
+      lastFrame: 71
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Death
+      takeName: Death
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FightingIDLE
+      takeName: FightingIDLE
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Grab
+      takeName: Grab
+      firstFrame: -1
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Guard
+      takeName: Guard
+      firstFrame: -1
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Hit
+      takeName: Hit
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: IDLE
+      takeName: IDLE
+      firstFrame: -1
+      lastFrame: 47
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Jump
+      takeName: Jump
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      firstFrame: -1
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SUSANEntry
+      takeName: SUSANEntry
+      firstFrame: -1
+      lastFrame: 151
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SUSANHeavyStrike
+      takeName: SUSANHeavyStrike
+      firstFrame: -1
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SUSANHold
+      takeName: SUSANHold
+      firstFrame: -1
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SUSANLightStrike
+      takeName: SUSANLightStrike
+      firstFrame: -1
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SUSANSleep
+      takeName: SUSANSleep
+      firstFrame: -1
+      lastFrame: 143
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SUSANSpecial
+      takeName: SUSANSpecial
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SUSANTaunt
+      takeName: SUSANTaunt
+      firstFrame: -1
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SUSANUltimate
+      takeName: SUSANUltimate
+      firstFrame: -1
+      lastFrame: 149
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SUSANVictory
+      takeName: SUSANVictory
+      firstFrame: -1
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Throw
+      takeName: Throw
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Yawn_Stretch
+      takeName: Yawn_Stretch
+      firstFrame: -1
+      lastFrame: 119
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: RightArm
+        weight: 1
+      - path: RightFoArm
+        weight: 1
+      - path: LeftFoArm
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: RightFoLeg
+        weight: 1
+      - path: LeftFoLeg
+        weight: 1
+      - path: RightLeg
+        weight: 1
+      - path: LeftLeg
+        weight: 1
+      - path: Chest
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Neck
+        weight: 1
+      - path: Armature/Neck/ShoulderRight
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderRight/RightArm_0/RightFArm
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0
+        weight: 1
+      - path: Armature/Neck/ShoulderLeft/LeftArm_0/LeftFArm
+        weight: 1
+      - path: Armature/Neck/Torso
+        weight: 1
+      - path: Armature/Neck/Torso/Mid
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowLeft/LeftLeg_0/LeftFLeg
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0
+        weight: 1
+      - path: Armature/Neck/Torso/Mid/LowRight/RightLeg_0/RightFLeg
+        weight: 1
+      - path: Armature/Neck/Head_0
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
