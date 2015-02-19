@@ -15,10 +15,110 @@ Platform assembly: C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_D
 Loading C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.083 seconds
+- Completed reload, in  0.067 seconds
 <RI> Initializing input.
 XInput1_3.dll not found.
 <RI> Input initialized.
 desktop: 1680x1050 60Hz; virtual: 2960x1050 at 0,0
 Platform assembly: C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Admin\Documents\GitHub\versus-smashing\Builds\Test_Data\Managed\System.dll (this message is harmless)
+IndexOutOfRangeException: Array index is out of range.
+  at SettingsFunction.ChangeResolution () [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall.Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent`1[System.Single].Invoke (Single arg0) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input, Boolean sendCallback) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.OnMove (UnityEngine.EventSystems.AxisEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IMoveHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IMoveHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:SendMoveEventToSelectedObject()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SettingsFunction.ChangeResolution () [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall.Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent`1[System.Single].Invoke (Single arg0) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input, Boolean sendCallback) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.OnMove (UnityEngine.EventSystems.AxisEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IMoveHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IMoveHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:SendMoveEventToSelectedObject()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SettingsFunction.ChangeResolution () [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall.Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent`1[System.Single].Invoke (Single arg0) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input, Boolean sendCallback) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.OnMove (UnityEngine.EventSystems.AxisEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IMoveHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IMoveHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:SendMoveEventToSelectedObject()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SettingsFunction.ChangeResolution () [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall.Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent`1[System.Single].Invoke (Single arg0) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input, Boolean sendCallback) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.OnMove (UnityEngine.EventSystems.AxisEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IMoveHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IMoveHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:SendMoveEventToSelectedObject()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at SettingsFunction.ChangeResolution () [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall.Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent`1[System.Single].Invoke (Single arg0) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input, Boolean sendCallback) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.Set (Single input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Slider.OnMove (UnityEngine.EventSystems.AxisEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IMoveHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IMoveHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:SendMoveEventToSelectedObject()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
