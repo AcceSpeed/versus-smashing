@@ -47,7 +47,7 @@ public class FighterController : MonoBehaviour {
 	int intSpecialID		= Animator.StringToHash ("Special");
 	int intGrabID			= Animator.StringToHash ("Grab");
 	int intThrowID			= Animator.StringToHash ("Throw");
-	int intUltimateGrabID	= Animator.StringToHash ("UltGrab");
+	int intUltimateGrabID	= Animator.StringToHash ("Ultimate");
 	int intHoldID			= Animator.StringToHash ("Hold");
 	int intUltimateStrikeID	= Animator.StringToHash ("UltStrike");
 
