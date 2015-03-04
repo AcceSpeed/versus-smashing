@@ -25,7 +25,7 @@ public class NetworkManager : MonoBehaviour {
 
 	private GameObject playerPrefab;
 
-	private HostData[] hostList;
+	public static HostData[] hostList;
 
 	public void StartServer()
 	{
@@ -33,7 +33,7 @@ public class NetworkManager : MonoBehaviour {
 		MasterServer.RegisterHost (STR_GAME_NAME, MainController.strPlayerName);
 	}
 
-	public void RefreshHostList()
+	public static void RefreshHostList()
 	{
 		MasterServer.RequestHostList(STR_GAME_NAME);
 	}

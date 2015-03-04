@@ -17,7 +17,7 @@ public class ButtonFunctions : MonoBehaviour {
 	}
 
 	public void CreateGame (){
-		DisplayRooms ();
+		NetworkManager.StartServer ();
 	}
 
 	public void QuitGame(){
@@ -25,18 +25,28 @@ public class ButtonFunctions : MonoBehaviour {
 	}
 
 	public void DisplayRooms (){
+		NetworkManager.RefreshHostList ();
 
-		roomButtonInstantiate = Instantiate(
-			GObjRoomButton
-		) as GameObject;
 
-		roomButtonInstantiate.transform.SetParent(GObjRoomsContainer.transform, false);
-		roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonDecal ;
-
-		intButtonMultiple++;
+		if (NetworkManager.hostList != null) {
+			foreach (var host in NetworkManager.hostList) {
+				
+				roomButtonInstantiate = Instantiate(
+					GObjRoomButton
+					) as GameObject;
+				
+				roomButtonInstantiate.transform.SetParent(GObjRoomsContainer.transform, false);
+				roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonDecal ;
+				roomButtonInstantiate.guiText.text = host.gameName   ;
+					
+				intButtonMultiple++;
+			}	
+		}
 	}
 
 	public void ChooseName(){
 		MainController.strPlayerName = txtPlayerName.text;
+
+		DisplayRooms ();
 	}
 }
