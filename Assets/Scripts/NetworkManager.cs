@@ -42,7 +42,7 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Network.Connect(hostData);
 	}
-
+	
 	void OnServerInitialized()
 	{
 
@@ -50,8 +50,9 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnMasterServerEvent(MasterServerEvent msEvent)
 	{
-		if (msEvent == MasterServerEvent.HostListReceived)
+		if (msEvent == MasterServerEvent.HostListReceived) {
 			hostList = MasterServer.PollHostList();
+		}
 	}
 
 	void OnConnectedToServer()

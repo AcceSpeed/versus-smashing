@@ -24,20 +24,23 @@ public class ButtonFunctions : MonoBehaviour {
 		Application.Quit();
 	}
 
-	public void DisplayRooms (){
+	private void DisplayRooms (){
 		NetworkManager.RefreshHostList ();
 
 
 		if (NetworkManager.hostList != null) {
+			string count = NetworkManager.hostList.GetLength(0).ToString();
+			intButtonMultiple = 0;
+
 			foreach (var host in NetworkManager.hostList) {
 				
 				roomButtonInstantiate = Instantiate(
 					GObjRoomButton
-					) as GameObject;
+				) as GameObject;
 				
 				roomButtonInstantiate.transform.SetParent(GObjRoomsContainer.transform, false);
 				roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonDecal ;
-				roomButtonInstantiate.guiText.text = host.gameName   ;
+				roomButtonInstantiate.GetComponentInChildren<Text>().text = count; //host.gameName   ;
 					
 				intButtonMultiple++;
 			}	
@@ -47,6 +50,6 @@ public class ButtonFunctions : MonoBehaviour {
 	public void ChooseName(){
 		MainController.strPlayerName = txtPlayerName.text;
 
-		DisplayRooms ();
+		InvokeRepeating("DisplayRooms", 0, 3); 	
 	}
 }
