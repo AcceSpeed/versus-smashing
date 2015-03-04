@@ -6,6 +6,7 @@ public class ButtonFunctions : MonoBehaviour {
 
 	public GameObject GObjRoomsContainer;
 	public GameObject GObjRoomButton;
+	public Text txtPlayerName;
 
 	private GameObject roomButtonInstantiate;
 	private int intButtonDecal = 10;
@@ -33,5 +34,9 @@ public class ButtonFunctions : MonoBehaviour {
 		roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonDecal ;
 
 		intButtonMultiple++;
+	}
+
+	public void ChooseName(){
+		MainController.strPlayerName = txtPlayerName.text;
 	}
 }

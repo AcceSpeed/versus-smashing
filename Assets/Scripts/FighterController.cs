@@ -22,7 +22,8 @@ public class FighterController : MonoBehaviour {
 	//variables
 	Animator anim;
 
-	public int intMaximumSpeed = 10;
+	public int intMaximumSpeed;
+	public int intJumpForce;
 
 	private float fltRotation = 90;
 
@@ -47,21 +48,20 @@ public class FighterController : MonoBehaviour {
 	int intSpecialID		= Animator.StringToHash ("Special");
 	int intGrabID			= Animator.StringToHash ("Grab");
 	int intThrowID			= Animator.StringToHash ("Throw");
-	int intUltimateGrabID	= Animator.StringToHash ("UltGrab");
+	int intUltimateGrabID	= Animator.StringToHash ("Ultimate");
 	int intHoldID			= Animator.StringToHash ("Hold");
 	int intUltimateStrikeID	= Animator.StringToHash ("UltStrike");
 
-
+	// Same for the triggers bools and integers of the
 
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
 	}
 	
-	
-	void Update ()
+	void FixedUpdate ()
 	{	
-		if (anim) {
+		if (anim && !MainController.blnMatchOver) {
 					
 			// get the current state of the animation
 			AnimatorStateInfo animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
@@ -78,7 +78,13 @@ public class FighterController : MonoBehaviour {
 			else{
 				anim.ResetTrigger (intGuardID);
 			}
-			
+
+			//When the up arrow key is pressed, jump
+			if(Input.GetKeyDown(KeyCode.UpArrow))
+			{
+				Jump(animStateInfo);
+			}
+
 			//WALKING
 			
 			//When the walk key is pressed, walk. On release, get back to IDLE
@@ -87,25 +93,25 @@ public class FighterController : MonoBehaviour {
 				if(anim.GetBool (intWalkID)== true){
 					anim.SetBool (intRunID, true);
 				}
+
 				anim.SetBool (intWalkID, true);
 
 				if(Input.GetKey(KeyCode.RightArrow)){
-					this.transform.localEulerAngles = new Vector3(0.0f, fltRotation ,0.0f);
+					transform.localEulerAngles = new Vector3(0.0f, fltRotation ,0.0f);
 				}
 				else if(Input.GetKey(KeyCode.LeftArrow)){
-					this.transform.localEulerAngles = new Vector3(0.0f, -fltRotation ,0.0f);
+					transform.localEulerAngles = new Vector3(0.0f, -fltRotation ,0.0f);
 				}
-				this.rigidbody.velocity += transform.forward * intMaximumSpeed / 24;
+
+				if(Mathf.Abs(rigidbody.velocity.x) <= intMaximumSpeed){
+					rigidbody.velocity += transform.forward * intMaximumSpeed / 12;
+				}
 			}
 			else{
 				anim.SetBool (intWalkID, false);
 				anim.SetBool (intRunID, false);
-			}
 
-			//When the up arrow key is pressed, jump
-			if(Input.GetKeyDown(KeyCode.UpArrow))
-			{
-				anim.SetBool (intJumpID, true);
+				rigidbody.velocity = new Vector3(0.0f,rigidbody.velocity.y,rigidbody.velocity.z);
 			}
 
 			//When the taunt key is pressed, taunt
@@ -132,6 +138,10 @@ public class FighterController : MonoBehaviour {
 				anim.SetTrigger (intHeavyStrikeID);
 			}
 
+			if(Input.GetKeyDown(KeyCode.H)){
+				Hit();
+			}
+
 			//When the special strike key is pressed, special strike
 			if(Input.GetKeyDown(KeyCode.E))
 			{
@@ -153,6 +163,17 @@ public class FighterController : MonoBehaviour {
 		}
 	}
 
+	void Jump(AnimatorStateInfo animStateInfo){
+		if (Mathf.Floor(Mathf.Abs(rigidbody.velocity.y)) == 0.0f && animStateInfo.nameHash != intJumpID) {
+			rigidbody.AddForce(Vector3.up * intJumpForce );
+			anim.SetBool (intJumpID, true);
+		}
+	}
+
+	void Hit(){
+		anim.SetTrigger (intHitID);
+	}
+	
 	void EndJump(){
 		anim.SetBool (intJumpID, false);
 	}
