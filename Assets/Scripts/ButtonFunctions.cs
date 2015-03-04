@@ -40,7 +40,7 @@ public class ButtonFunctions : MonoBehaviour {
 				
 				roomButtonInstantiate.transform.SetParent(GObjRoomsContainer.transform, false);
 				roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonDecal ;
-				roomButtonInstantiate.GetComponentInChildren<Text>().text = count; //host.gameName   ;
+				roomButtonInstantiate.GetComponentInChildren<Text>().text = host.gameName   ;
 					
 				intButtonMultiple++;
 			}	
