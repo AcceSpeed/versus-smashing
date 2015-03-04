@@ -1,4 +1,20 @@
-﻿using UnityEngine;
+﻿//*********************************************************
+// Societe: ETML
+// Auteur : Vincent Mouquin
+// Date : 16.02.15
+// But : Network control test script
+//*********************************************************
+// Modifications:
+// Date :
+// Auteur :
+// Raison :
+//*********************************************************
+// Date :
+// Auteur :
+// Raison :
+//*********************************************************
+
+using UnityEngine;
 using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
