@@ -26,11 +26,13 @@ public class ButtonFunctions : MonoBehaviour {
 	}
 
 	void Update(){
-		if(intTimerStatus == INT_TIMER_REFRESH){
-			DisplayRooms();
-			intTimerStatus = 0;
+		if (Application.loadedLevelName == "MainMenu" && UIElements[1].activeSelf) {
+			if(intTimerStatus == INT_TIMER_REFRESH){
+				DisplayRooms();
+				intTimerStatus = 0;
+			}
+			intTimerStatus++;
 		}
-		intTimerStatus++;
 	}
 
 	public void QuitGame(){

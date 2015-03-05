@@ -45,11 +45,10 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	public static void FindOpponent (){
-		if (hostList == null) {
+		if (hostList != null) {
 			// check the avaliability of the hosts
 			foreach (HostData host in hostList) {
 				if(host.connectedPlayers == 1){
-
 					// join the host and stop the search
 					JoinServer(host);
 					return;

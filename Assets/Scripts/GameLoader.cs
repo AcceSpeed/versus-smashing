@@ -21,7 +21,7 @@ public class GameLoader : MonoBehaviour {
 			playerSpawnPosition = new Vector3 (20f, 5.5f, 0f);
 			playerSpawnRotation.eulerAngles = new Vector3 (0, -90, 0);
 		}
-		
+
 		Network.Instantiate (playerPrefabSusan, playerSpawnPosition, playerSpawnRotation, 0);
 	}
 }
