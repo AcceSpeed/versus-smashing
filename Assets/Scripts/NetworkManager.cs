@@ -21,8 +21,7 @@ public class NetworkManager : MonoBehaviour {
 
 	private const string STR_GAME_NAME = "VersusSmashingNetwork";
 	private string strRoomComment;
-
-	public static GameObject playerPrefabSusan;
+	
 	public static HostData[] hostList;
 
 	public static void StartServer()
@@ -31,6 +30,7 @@ public class NetworkManager : MonoBehaviour {
 		MasterServer.RegisterHost (STR_GAME_NAME, MainController.strPlayerName);
 
 		MainController.blnIsHost = true;
+		LoadLevel();
 	}
 
 	public static void RefreshHostList()
@@ -42,6 +42,7 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Network.Connect(hostData);
 		MainController.blnIsHost = false;
+		LoadLevel();
 	}
 
 	public static void FindOpponent (){
@@ -58,6 +59,10 @@ public class NetworkManager : MonoBehaviour {
 
 		// set self as host
 		StartServer();
+	}
+
+	private static void LoadLevel (){
+		Application.LoadLevel ("Arena");
 	}
 
 	void OnServerInitialized()

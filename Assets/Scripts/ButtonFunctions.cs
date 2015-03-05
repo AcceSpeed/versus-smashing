@@ -41,11 +41,6 @@ public class ButtonFunctions : MonoBehaviour {
 
 	public void MatchMaking(){
 		NetworkManager.FindOpponent();
-		LoadLevel();
-	}
-
-	private void LoadLevel (){
-		Application.LoadLevel ("Arena");
 	}
 
 	private void CreateGame (){
