@@ -18,7 +18,7 @@
 *.pidb.meta
 
 # Custom Ignored Files
-output_log.txt
+*output_log.txt
 
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
