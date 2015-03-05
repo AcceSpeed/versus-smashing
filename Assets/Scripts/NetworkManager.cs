@@ -21,17 +21,16 @@ public class NetworkManager : MonoBehaviour {
 
 	private const string STR_GAME_NAME = "VersusSmashingNetwork";
 	private string strRoomComment;
-	private Vector3 playerSpawnPosition;
-	private Vector3 playerSpawnDirection;
 
-
-	public GameObject playerPrefabSusan;
+	public static GameObject playerPrefabSusan;
 	public static HostData[] hostList;
 
 	public static void StartServer()
 	{
 		Network.InitializeServer (2, 25000, !Network.HavePublicAddress ());
 		MasterServer.RegisterHost (STR_GAME_NAME, MainController.strPlayerName);
+
+		MainController.blnIsHost = true;
 	}
 
 	public static void RefreshHostList()
@@ -42,6 +41,7 @@ public class NetworkManager : MonoBehaviour {
 	public static void JoinServer(HostData hostData)
 	{
 		Network.Connect(hostData);
+		MainController.blnIsHost = false;
 	}
 
 	public static void FindOpponent (){
@@ -61,20 +61,8 @@ public class NetworkManager : MonoBehaviour {
 		StartServer();
 	}
 
-	private void SpawnPlayer(bool blnHost){
-
-		if (blnHost) {
-			playerSpawnPosition = new Vector3 (-20f, 5.5f, 0f);
-		} else {
-			playerSpawnPosition = new Vector3 (20f, 5.5f, 0f);
-		}
-
-		//Network.Instantiate (playerPrefabSusan, playerSpawnPosition);
-	}
-
 	void OnServerInitialized()
 	{
-		SpawnPlayer (true);
 	}
 
 	void OnMasterServerEvent(MasterServerEvent msEvent)
@@ -86,6 +74,5 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnConnectedToServer()
 	{
-		SpawnPlayer (false);
 	}
 }

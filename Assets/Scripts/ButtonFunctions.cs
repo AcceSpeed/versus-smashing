@@ -6,6 +6,7 @@ public class ButtonFunctions : MonoBehaviour {
 
 	public GameObject GObjRoomsContainer;
 	public GameObject GObjRoomButton;
+	public GameObject[] UIElements;
 	public Text txtPlayerName;
 
 	private GameObject roomButtonInstantiate;
@@ -14,6 +15,15 @@ public class ButtonFunctions : MonoBehaviour {
 	private int intTimerStatus = 50;
 
 	private const int INT_TIMER_REFRESH = 50;
+
+	// Use this for initialization
+	void Start () {
+		
+		if (Application.loadedLevelName == "MainMenu") {
+			UIElements [0].SetActive (true);
+			UIElements [1].SetActive (false);
+		}
+	}
 
 	void Update(){
 		if(intTimerStatus == INT_TIMER_REFRESH){

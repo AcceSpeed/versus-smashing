@@ -22,18 +22,16 @@ public class MainController : MonoBehaviour {
 	public static bool blnMatchOver;
 	public static string strPlayerName;
 
-	public GameObject[] UIElements;
+	public static bool blnIsHost;
 
 	// Use this for initialization
 	void Start () {
+
+		DontDestroyOnLoad (this);
+
 		blnMatchOver = false;
 
 		Physics.gravity = new Vector3(0f,-50f,0f);
-
-		if (Application.loadedLevelName == "MainMenu") {
-			UIElements [0].SetActive (true);
-			UIElements [1].SetActive (false);
-		}
 	}
 	
 	// Update is called once per frame
