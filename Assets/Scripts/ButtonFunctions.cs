@@ -11,22 +11,37 @@ public class ButtonFunctions : MonoBehaviour {
 	private GameObject roomButtonInstantiate;
 	private int intButtonDecal = 10;
 	private int intButtonMultiple = 0;
+	private int intTimerStatus = 50;
 
-	public void LoadLevel (){
-		Application.LoadLevel ("TestNetwork");
-	}
+	private const int INT_TIMER_REFRESH = 50;
 
-	public void CreateGame (){
-		NetworkManager.StartServer ();
+	void Update(){
+		if(intTimerStatus == INT_TIMER_REFRESH){
+			DisplayRooms();
+			intTimerStatus = 0;
+		}
+		intTimerStatus++;
 	}
 
 	public void QuitGame(){
 		Application.Quit();
 	}
 
+	public void MatchMaking(){
+		NetworkManager.FindOpponent();
+		LoadLevel();
+	}
+
+	private void LoadLevel (){
+		Application.LoadLevel ("Arena");
+	}
+
+	private void CreateGame (){
+
+	}
+
 	private void DisplayRooms (){
 		NetworkManager.RefreshHostList ();
-
 
 		if (NetworkManager.hostList != null) {
 			string count = NetworkManager.hostList.GetLength(0).ToString();
@@ -49,7 +64,5 @@ public class ButtonFunctions : MonoBehaviour {
 
 	public void ChooseName(){
 		MainController.strPlayerName = txtPlayerName.text;
-
-		InvokeRepeating("DisplayRooms", 0, 3); 	
 	}
 }

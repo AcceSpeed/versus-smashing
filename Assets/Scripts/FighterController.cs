@@ -61,13 +61,24 @@ public class FighterController : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{	
+		if (networkView.isMine)
+		{
+			InputMovement();
+		}
+		else
+		{
+			SyncedMovement();
+		}
+	}
+
+	private void InputMovement(){
 		if (anim && !MainController.blnMatchOver) {
-					
+			
 			// get the current state of the animation
 			AnimatorStateInfo animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
-
+			
 			//INPUTS
-
+			
 			//GUARDING
 			
 			//When the guard key is pressed, guard. On release, get back to IDLE
@@ -78,13 +89,13 @@ public class FighterController : MonoBehaviour {
 			else{
 				anim.ResetTrigger (intGuardID);
 			}
-
+			
 			//When the up arrow key is pressed, jump
 			if(Input.GetKeyDown(KeyCode.UpArrow))
 			{
 				Jump(animStateInfo);
 			}
-
+			
 			//WALKING
 			
 			//When the walk key is pressed, walk. On release, get back to IDLE
@@ -93,16 +104,16 @@ public class FighterController : MonoBehaviour {
 				if(anim.GetBool (intWalkID)== true){
 					anim.SetBool (intRunID, true);
 				}
-
+				
 				anim.SetBool (intWalkID, true);
-
+				
 				if(Input.GetKey(KeyCode.RightArrow)){
 					transform.localEulerAngles = new Vector3(0.0f, fltRotation ,0.0f);
 				}
 				else if(Input.GetKey(KeyCode.LeftArrow)){
 					transform.localEulerAngles = new Vector3(0.0f, -fltRotation ,0.0f);
 				}
-
+				
 				if(Mathf.Abs(rigidbody.velocity.x) <= intMaximumSpeed){
 					rigidbody.velocity += transform.forward * intMaximumSpeed / 12;
 				}
@@ -110,57 +121,62 @@ public class FighterController : MonoBehaviour {
 			else{
 				anim.SetBool (intWalkID, false);
 				anim.SetBool (intRunID, false);
-
+				
 				rigidbody.velocity = new Vector3(0.0f,rigidbody.velocity.y,rigidbody.velocity.z);
 			}
-
+			
 			//When the taunt key is pressed, taunt
 			if(Input.GetKeyDown(KeyCode.P))
 			{
 				anim.SetTrigger (intTauntID);
 			}
-
+			
 			//When the grab key is pressed, try to grab
 			if(Input.GetKeyDown(KeyCode.G))
 			{
 				anim.SetTrigger (intGrabID);
 			}
-
+			
 			//When strike key is pressed, strike
 			if(Input.GetKeyDown(KeyCode.Q))
 			{
 				anim.SetTrigger (intLightStrikeID);
 			}
-
+			
 			//When the second strike key is pressed, strike
 			if(Input.GetKeyDown(KeyCode.W))
 			{
 				anim.SetTrigger (intHeavyStrikeID);
 			}
-
+			
 			if(Input.GetKeyDown(KeyCode.H)){
 				Hit();
 			}
-
+			
 			//When the special strike key is pressed, special strike
 			if(Input.GetKeyDown(KeyCode.E))
 			{
 				anim.SetTrigger (intSpecialID);
 			}
-
+			
 			//When the ultimate key is pressed, ultimate (starting with a grab animation)
 			//NEED THE HEALTH OF THE ADVERSARY TO BE UNDER 33%
 			if(Input.GetKeyDown(KeyCode.R))
 			{
 				anim.SetTrigger (intUltimateGrabID);
 			}
-
+			
 			//INPUT-NEEDLESS ANIMATIONS
-
-
+			
+			
 			//Debug on the current animation state
 			//Debug.Log (animStateInfo.nameHash);
 		}
+	}
+
+	private void SyncedMovement()
+	{
+
 	}
 
 	void Jump(AnimatorStateInfo animStateInfo){

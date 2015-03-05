@@ -30,8 +30,10 @@ public class MainController : MonoBehaviour {
 
 		Physics.gravity = new Vector3(0f,-50f,0f);
 
-		UIElements [0].SetActive (true);
-		UIElements [1].SetActive (false);
+		if (Application.loadedLevelName == "MainMenu") {
+			UIElements [0].SetActive (true);
+			UIElements [1].SetActive (false);
+		}
 	}
 	
 	// Update is called once per frame
