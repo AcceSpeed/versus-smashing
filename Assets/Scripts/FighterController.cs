@@ -67,7 +67,7 @@ public class FighterController : MonoBehaviour {
 		}
 		else
 		{
-			SyncedMovement();
+			//SyncedMovement();
 		}
 	}
 
@@ -174,9 +174,16 @@ public class FighterController : MonoBehaviour {
 		}
 	}
 
-	private void SyncedMovement()
-	{
-
+	void OnSerializeNetworkView(BitStream bstStream, NetworkMessageInfo nmiInfo){
+		Vector3 v3SyncPosition = Vector3.zero;
+		if(bstStream.isWriting){
+			v3SyncPosition = rigidbody.position;
+			bstStream.Serialize(ref v3SyncPosition);
+		}
+		else{
+			bstStream.Serialize(ref v3SyncPosition);
+			rigidbody.position = v3SyncPosition;
+		}
 	}
 
 	void Jump(AnimatorStateInfo animStateInfo){

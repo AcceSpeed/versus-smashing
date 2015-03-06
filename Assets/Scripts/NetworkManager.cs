@@ -26,7 +26,7 @@ public class NetworkManager : MonoBehaviour {
 
 	public static void StartServer()
 	{
-		Network.InitializeServer (2, 25001, !Network.HavePublicAddress ());
+		Network.InitializeServer (2, 25000, !Network.HavePublicAddress ());
 		MasterServer.RegisterHost (STR_GAME_NAME, MainController.strPlayerName);
 
 		MainController.blnIsHost = true;
