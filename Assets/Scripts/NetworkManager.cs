@@ -76,15 +76,11 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	void OnPlayerConnected(NetworkPlayer player){
-		StartMatch ();
+		GameLoader.blnResetStage = true;
 	}
 
-	void StartMatch(){
-		if (this.networkView.isMine) {
-			LoadLevel ();
-		} else {
-			GameLoader.blnResetStage = true;
-		}
+	void OnConnectedToServer(){
+		LoadLevel ();
 	}
 	
 }

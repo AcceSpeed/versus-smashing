@@ -32,13 +32,13 @@ public class GameLoader : MonoBehaviour {
 			playerSpawnRotation.eulerAngles = new Vector3 (0, -90, 0);
 		}
 
-		Network.Instantiate (playerPrefabSusan, playerSpawnPosition, playerSpawnRotation, 0);
+		Network.Instantiate (playerPrefabSusan, playerSpawnPosition, playerSpawnRotation, 1);
 	}
 
 	private void ResetStage(){
 		blnResetStage = false;
 
-		playersToDestroy = GameObject.FindGameObjectsWithTag ("player");
+		playersToDestroy = GameObject.FindGameObjectsWithTag ("Player");
 		
 		foreach (GameObject player in playersToDestroy) {
 			GameObject.DestroyObject(player);
