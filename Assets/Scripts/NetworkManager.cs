@@ -75,7 +75,7 @@ public class NetworkManager : MonoBehaviour {
 		}
 	}
 
-	void OnConnectedPlayer(){
+	void OnPlayerConnected(){
 		StartMatch ();
 	}
 
