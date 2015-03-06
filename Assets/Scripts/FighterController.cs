@@ -20,20 +20,23 @@ using System.Collections;
 public class FighterController : MonoBehaviour {
 
 	//variables
-	Animator anim;
+	public int intMaximumSpeed;		// Maximum speed of the player
+	public int intJumpForce;		// Vertical force coefficient applied on a jump
 
-	public int intMaximumSpeed;
-	public int intJumpForce;
+	private Animator anim;							// Animation controller
+	private int animStateInfo;		// Current state of the animation
+	private int animOldStateInfo;		// Previous state
 
-	private float fltRotation = 90;
+	private float fltRotation = 90;					// Rotation of a player
+	private float fltLastSynchronizationTime = 0f;	// Time of last synchronization
+	private float fltSyncDelay = 0f;				// Delay of the synchronization
+	private float fltSyncTime = 0f;					// time of synchronization
 
-	private float fltLastSynchronizationTime = 0f;
-	private float fltSyncDelay = 0f;
-	private float fltSyncTime = 0f;
-	private Vector3 v3SyncStartPosition = Vector3.zero;
-	private Vector3 v3SyncEndPosition = Vector3.zero;
+	private Vector3 v3SyncStartPosition = Vector3.zero;		// initial position of the player
+	private Vector3 v3SyncEndPosition = Vector3.zero;		// final position of the player
 
-	//These variables store the ID of the animation states
+
+	//These variables store the ID of the animation states (determined by name)
 	int intJumpID			= Animator.StringToHash ("Jump");
 	int intWalkID			= Animator.StringToHash ("Walk");
 	int intRunID			= Animator.StringToHash ("Run");
@@ -57,7 +60,7 @@ public class FighterController : MonoBehaviour {
 	int intHoldID			= Animator.StringToHash ("Hold");
 	int intUltimateStrikeID	= Animator.StringToHash ("UltStrike");
 
-	// EVENTS
+	//////////////////////// EVENTS ///////////////////////////
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
@@ -97,19 +100,20 @@ public class FighterController : MonoBehaviour {
 		}
 	}
 
-	// PRIVATE FUNCTIONS
-
+	//////////////////////// PRIVATE FUNCTIONS /////////////////////////// 
 	private void InputMovement(){
 		if (anim && !MainController.blnMatchOver) {
 			
 			// get the current state of the animation
-			AnimatorStateInfo animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
-			
-			//INPUTS
-			
-			//GUARDING
-			
-			//When the guard key is pressed, guard. On release, get back to IDLE
+			animStateInfo = anim.GetCurrentAnimatorStateInfo(0).GetHashCode();
+
+			if(animOldStateInfo != animStateInfo){
+				this.networkView.RPC("SyncAnimation", RPCMode.Others);
+			}
+
+			animOldStateInfo = animStateInfo;
+
+			//When the guard key is pressed, guard.
 			if(Input.GetKey(KeyCode.T))
 			{
 				anim.SetTrigger (intGuardID);
@@ -208,8 +212,15 @@ public class FighterController : MonoBehaviour {
 		rigidbody.position = Vector3.Lerp (v3SyncStartPosition, v3SyncEndPosition, fltSyncTime/fltSyncDelay);
 	}
 
-	private void Jump(AnimatorStateInfo animStateInfo){
-		if (Mathf.Floor(Mathf.Abs(rigidbody.velocity.y)) == 0.0f && animStateInfo.nameHash != intJumpID) {
+	[RPC]
+	void SyncAnimation(){
+		if(!networkView.isMine){
+			anim.Play(animStateInfo);
+		}
+	}
+
+	private void Jump(int animStateInfo){
+		if (Mathf.Floor(Mathf.Abs(rigidbody.velocity.y)) == 0.0f && animStateInfo != intJumpID) {
 			rigidbody.AddForce(Vector3.up * intJumpForce );
 			anim.SetBool (intJumpID, true);
 		}
@@ -223,16 +234,3 @@ public class FighterController : MonoBehaviour {
 		anim.SetBool (intJumpID, false);
 	}
 }
-
-
-// *******************************************************************
-// Nom : InitGame
-// But : Initialiser le jeu
-// Retour: 0 si l initialisation s est deroulee correctement
-// 1 dans le cas contraire
-// Param.: intNbPlayers (in) Entier qui donne le nombre de joueurs
-// intNbArmsOctopus (ref) Entier qui donne le nombre de bras
-// de la pieuvre
-// intCrustaceanAverage (out) Float qui retourne la moyenne de
-// crustaces
-// *******************************************************************
