@@ -70,6 +70,11 @@ public class ButtonFunctions : MonoBehaviour {
 	}
 
 	public void ChooseName(){
-		MainController.strPlayerName = txtPlayerName.text;
+		if (txtPlayerName.text != "") {
+			MainController.strPlayerName = txtPlayerName.text;
+
+			UIElements [0].SetActive (false);
+			UIElements [1].SetActive (true);
+		}
 	}
 }

@@ -20,7 +20,7 @@ using System.Collections;
 public class MainController : MonoBehaviour {
 
 	public static bool blnMatchOver;
-	public static string strPlayerName;
+	public static string strPlayerName = "";
 
 	public static bool blnIsHost;
 

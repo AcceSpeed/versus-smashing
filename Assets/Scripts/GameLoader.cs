@@ -41,7 +41,7 @@ public class GameLoader : MonoBehaviour {
 		playersToDestroy = GameObject.FindGameObjectsWithTag ("Player");
 		
 		foreach (GameObject player in playersToDestroy) {
-			GameObject.DestroyObject(player);
+			Destroy(player);
 		}
 		
 		SpawnPlayer (MainController.blnIsHost);

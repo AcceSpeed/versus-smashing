@@ -76,18 +76,22 @@ public class FighterController : MonoBehaviour {
 	}
 
 	void OnSerializeNetworkView(BitStream bstStream, NetworkMessageInfo nmiInfo){
+		Debug.Log ("OnSerializeNetworkView");
 		Vector3 v3SyncPosition = Vector3.zero;
 		if(bstStream.isWriting){
+			Debug.Log ("Writing");
 			v3SyncPosition = rigidbody.position;
 			bstStream.Serialize(ref v3SyncPosition);
 		}
-		else{
+
+		if(bstStream.isReading){
+			Debug.Log ("Reading");
 			bstStream.Serialize(ref v3SyncPosition);
 			
 			fltSyncTime = 0f;
 			fltSyncDelay = Time.time - fltLastSynchronizationTime;
 			fltLastSynchronizationTime = Time.time;
-			
+
 			v3SyncStartPosition = rigidbody.position;
 			v3SyncEndPosition = v3SyncPosition;
 		}
@@ -200,6 +204,7 @@ public class FighterController : MonoBehaviour {
 
 	private void SyncedMovement(){
 		fltSyncTime += Time.deltaTime;
+
 		rigidbody.position = Vector3.Lerp (v3SyncStartPosition, v3SyncEndPosition, fltSyncTime/fltSyncDelay);
 	}
 
