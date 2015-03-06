@@ -42,7 +42,6 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Network.Connect(hostData);
 		MainController.blnIsHost = false;
-		LoadLevel();
 	}
 
 	public static void FindOpponent (){
@@ -76,7 +75,17 @@ public class NetworkManager : MonoBehaviour {
 		}
 	}
 
-	void OnConnectedToServer()
-	{
+	void OnConnectedToServer(){
+		StartMatch ();
 	}
+	
+	[RPC]
+	void StartMatch(){
+		if (this.networkView.isMine) {
+			LoadLevel ();
+		} else {
+			GameLoader.blnResetStage = true;
+		}
+	}
+	
 }
