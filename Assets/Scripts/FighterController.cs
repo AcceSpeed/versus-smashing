@@ -27,6 +27,11 @@ public class FighterController : MonoBehaviour {
 
 	private float fltRotation = 90;
 
+	private float fltLastSynchronizationTime = 0f;
+	private float fltSyncDelay = 0f;
+	private float fltSyncTime = 0f;
+	private Vector3 v3SyncStartPosition = Vector3.zero;
+	private Vector3 v3SyncEndPosition = Vector3.zero;
 
 	//These variables store the ID of the animation states
 	int intJumpID			= Animator.StringToHash ("Jump");
@@ -52,8 +57,7 @@ public class FighterController : MonoBehaviour {
 	int intHoldID			= Animator.StringToHash ("Hold");
 	int intUltimateStrikeID	= Animator.StringToHash ("UltStrike");
 
-	// Same for the triggers bools and integers of the
-
+	// EVENTS
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
@@ -67,9 +71,29 @@ public class FighterController : MonoBehaviour {
 		}
 		else
 		{
-			//SyncedMovement();
+			SyncedMovement();
 		}
 	}
+
+	void OnSerializeNetworkView(BitStream bstStream, NetworkMessageInfo nmiInfo){
+		Vector3 v3SyncPosition = Vector3.zero;
+		if(bstStream.isWriting){
+			v3SyncPosition = rigidbody.position;
+			bstStream.Serialize(ref v3SyncPosition);
+		}
+		else{
+			bstStream.Serialize(ref v3SyncPosition);
+			
+			fltSyncTime = 0f;
+			fltSyncDelay = Time.time - fltLastSynchronizationTime;
+			fltLastSynchronizationTime = Time.time;
+			
+			v3SyncStartPosition = rigidbody.position;
+			v3SyncEndPosition = v3SyncPosition;
+		}
+	}
+
+	// PRIVATE FUNCTIONS
 
 	private void InputMovement(){
 		if (anim && !MainController.blnMatchOver) {
@@ -174,30 +198,23 @@ public class FighterController : MonoBehaviour {
 		}
 	}
 
-	void OnSerializeNetworkView(BitStream bstStream, NetworkMessageInfo nmiInfo){
-		Vector3 v3SyncPosition = Vector3.zero;
-		if(bstStream.isWriting){
-			v3SyncPosition = rigidbody.position;
-			bstStream.Serialize(ref v3SyncPosition);
-		}
-		else{
-			bstStream.Serialize(ref v3SyncPosition);
-			rigidbody.position = v3SyncPosition;
-		}
+	private void SyncedMovement(){
+		fltSyncTime += Time.deltaTime;
+		rigidbody.position = Vector3.Lerp (v3SyncStartPosition, v3SyncEndPosition, fltSyncTime/fltSyncDelay);
 	}
 
-	void Jump(AnimatorStateInfo animStateInfo){
+	private void Jump(AnimatorStateInfo animStateInfo){
 		if (Mathf.Floor(Mathf.Abs(rigidbody.velocity.y)) == 0.0f && animStateInfo.nameHash != intJumpID) {
 			rigidbody.AddForce(Vector3.up * intJumpForce );
 			anim.SetBool (intJumpID, true);
 		}
 	}
 
-	void Hit(){
+	private void Hit(){
 		anim.SetTrigger (intHitID);
 	}
 	
-	void EndJump(){
+	private void EndJump(){
 		anim.SetBool (intJumpID, false);
 	}
 }
