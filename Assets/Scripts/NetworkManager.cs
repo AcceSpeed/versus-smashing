@@ -75,11 +75,10 @@ public class NetworkManager : MonoBehaviour {
 		}
 	}
 
-	void OnConnectedToServer(){
+	void OnConnectedPlayer(){
 		StartMatch ();
 	}
-	
-	[RPC]
+
 	void StartMatch(){
 		if (this.networkView.isMine) {
 			LoadLevel ();
