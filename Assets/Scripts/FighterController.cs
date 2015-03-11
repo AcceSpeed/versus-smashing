@@ -23,9 +23,11 @@ public class FighterController : MonoBehaviour {
 	public int intMaximumSpeed;		// Maximum speed of the player
 	public int intJumpForce;		// Vertical force coefficient applied on a jump
 
-	private Animator anim;							// Animation controller
-	private int animStateInfo;		// Current state of the animation
-	private int animOldStateInfo;		// Previous state
+	private Animator anim;				// Animation controller
+	private int intAnimStateInfo;		// Current state of the animation
+	private int intAnimOldStateInfo;	// Previous state
+	private int intAnimOtherState;		// Animation of the opponent
+	private int intAnimOldOtherState;	// Animation of the opponent
 
 	private float fltRotation = 90;					// Rotation of a player
 	private float fltLastSynchronizationTime = 0f;	// Time of last synchronization
@@ -36,29 +38,30 @@ public class FighterController : MonoBehaviour {
 	private Vector3 v3SyncEndPosition = Vector3.zero;		// final position of the player
 
 
+
 	//These variables store the ID of the animation states (determined by name)
-	int intJumpID			= Animator.StringToHash ("Jump");
-	int intWalkID			= Animator.StringToHash ("Walk");
-	int intRunID			= Animator.StringToHash ("Run");
-	int intGuardID			= Animator.StringToHash ("Guard");
-	int intFightID			= Animator.StringToHash ("FightingIDLE");
-	int intLightStrikeID	= Animator.StringToHash ("LightStrike");
-	int intTauntID			= Animator.StringToHash ("Taunt");
-	int intHeavyStrikeID	= Animator.StringToHash ("HeavyStrike");
-	int intHitID			= Animator.StringToHash ("Hit");
-	int intDeathID			= Animator.StringToHash ("Death");
-	int intVictoryID		= Animator.StringToHash ("Victory");
-	int intIDLEID			= Animator.StringToHash ("IDLE");
-	int intClockID			= Animator.StringToHash ("Clock");
-	int intYawnID			= Animator.StringToHash ("Yawn");
-	int intSleepID			= Animator.StringToHash ("Sleep");
-	int intEntryID			= Animator.StringToHash ("Entry");
-	int intSpecialID		= Animator.StringToHash ("Special");
-	int intGrabID			= Animator.StringToHash ("Grab");
-	int intThrowID			= Animator.StringToHash ("Throw");
-	int intUltimateGrabID	= Animator.StringToHash ("Ultimate");
-	int intHoldID			= Animator.StringToHash ("Hold");
-	int intUltimateStrikeID	= Animator.StringToHash ("UltStrike");
+	static int intJumpID			= Animator.StringToHash ("Base.Jump");
+	static int intWalkID			= Animator.StringToHash ("Base.Walk");
+	static int intRunID				= Animator.StringToHash ("Base.Run");
+	static int intGuardID			= Animator.StringToHash ("Base.Guard");
+	static int intFightID			= Animator.StringToHash ("FightingIDLE");
+	static int intLightStrikeID		= Animator.StringToHash ("LightStrike");
+	static int intTauntID			= Animator.StringToHash ("Taunt");
+	static int intHeavyStrikeID		= Animator.StringToHash ("HeavyStrike");
+	static int intHitID				= Animator.StringToHash ("Hit");
+	static int intDeathID			= Animator.StringToHash ("Death");
+	static int intVictoryID			= Animator.StringToHash ("Victory");
+	static int intIDLEID			= Animator.StringToHash ("IDLE");
+	static int intClockID			= Animator.StringToHash ("Clock");
+	static int intYawnID			= Animator.StringToHash ("Yawn");
+	static int intSleepID			= Animator.StringToHash ("Sleep");
+	static int intEntryID			= Animator.StringToHash ("Entry");
+	static int intSpecialID			= Animator.StringToHash ("Special");
+	static int intGrabID			= Animator.StringToHash ("Grab");
+	static int intThrowID			= Animator.StringToHash ("Throw");
+	static int intUltimateGrabID	= Animator.StringToHash ("Ultimate");
+	static int intHoldID			= Animator.StringToHash ("Hold");
+	static int intUltimateStrikeID	= Animator.StringToHash ("UltStrike");
 
 	//////////////////////// EVENTS ///////////////////////////
 	void Start ()
@@ -66,7 +69,7 @@ public class FighterController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 	}
 	
-	void FixedUpdate ()
+	void Update ()
 	{	
 		if (networkView.isMine)
 		{
@@ -79,16 +82,27 @@ public class FighterController : MonoBehaviour {
 	}
 
 	void OnSerializeNetworkView(BitStream bstStream, NetworkMessageInfo nmiInfo){
-		Debug.Log ("OnSerializeNetworkView");
 		Vector3 v3SyncPosition = Vector3.zero;
+		Vector3 v3SyncRotation = Vector3.zero;
+		int intSyncAnimation = 0;
+
 		if(bstStream.isWriting){
-			Debug.Log ("Writing");
 			v3SyncPosition = rigidbody.position;
 			bstStream.Serialize(ref v3SyncPosition);
+
+			v3SyncRotation = transform.localEulerAngles;
+			bstStream.Serialize(ref v3SyncRotation);
+
+
+			if(intAnimOldStateInfo != intAnimStateInfo){
+				intSyncAnimation = intAnimStateInfo;
+				bstStream.Serialize(ref intSyncAnimation);
+			}
+
+			intAnimOldStateInfo = intAnimStateInfo;
 		}
 
 		if(bstStream.isReading){
-			Debug.Log ("Reading");
 			bstStream.Serialize(ref v3SyncPosition);
 			
 			fltSyncTime = 0f;
@@ -97,21 +111,21 @@ public class FighterController : MonoBehaviour {
 
 			v3SyncStartPosition = rigidbody.position;
 			v3SyncEndPosition = v3SyncPosition;
+
+			bstStream.Serialize(ref v3SyncRotation);
+			transform.localEulerAngles = v3SyncRotation;
+
+			bstStream.Serialize(ref intSyncAnimation);
+			intAnimOtherState = intSyncAnimation;
 		}
 	}
 
 	//////////////////////// PRIVATE FUNCTIONS /////////////////////////// 
 	private void InputMovement(){
 		if (anim && !MainController.blnMatchOver) {
-			
+
 			// get the current state of the animation
-			animStateInfo = anim.GetCurrentAnimatorStateInfo(0).GetHashCode();
-
-			if(animOldStateInfo != animStateInfo){
-				this.networkView.RPC("SyncAnimation", RPCMode.Others);
-			}
-
-			animOldStateInfo = animStateInfo;
+			intAnimStateInfo = anim.GetCurrentAnimatorStateInfo(0).nameHash;
 
 			//When the guard key is pressed, guard.
 			if(Input.GetKey(KeyCode.T))
@@ -125,7 +139,7 @@ public class FighterController : MonoBehaviour {
 			//When the up arrow key is pressed, jump
 			if(Input.GetKeyDown(KeyCode.UpArrow))
 			{
-				Jump(animStateInfo);
+				Jump(intAnimStateInfo);
 			}
 			
 			//WALKING
@@ -199,10 +213,6 @@ public class FighterController : MonoBehaviour {
 			}
 			
 			//INPUT-NEEDLESS ANIMATIONS
-			
-			
-			//Debug on the current animation state
-			//Debug.Log (animStateInfo.nameHash);
 		}
 	}
 
@@ -210,17 +220,18 @@ public class FighterController : MonoBehaviour {
 		fltSyncTime += Time.deltaTime;
 
 		rigidbody.position = Vector3.Lerp (v3SyncStartPosition, v3SyncEndPosition, fltSyncTime/fltSyncDelay);
-	}
+		if(intAnimOldOtherState != intAnimOtherState){
 
-	[RPC]
-	void SyncAnimation(){
-		if(!networkView.isMine){
-			anim.Play(animStateInfo);
+			anim.SetTrigger (intAnimOtherState);
+			anim.ResetTrigger (intAnimOldOtherState);
 		}
+
+		intAnimOldOtherState = intAnimOtherState;
+		
 	}
 
-	private void Jump(int animStateInfo){
-		if (Mathf.Floor(Mathf.Abs(rigidbody.velocity.y)) == 0.0f && animStateInfo != intJumpID) {
+	private void Jump(int intAnimStateInfo){
+		if (Mathf.Floor(Mathf.Abs(rigidbody.velocity.y)) == 0.0f && intAnimStateInfo != intJumpID) {
 			rigidbody.AddForce(Vector3.up * intJumpForce );
 			anim.SetBool (intJumpID, true);
 		}
