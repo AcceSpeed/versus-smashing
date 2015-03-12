@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 // Societe: ETML
 // Auteur : Vincent Mouquin
 // Date : 18.02.15
@@ -13,7 +13,6 @@
 // Auteur :
 // Raison :
 //*********************************************************
-
 using UnityEngine;
 using System.Collections;
 
@@ -29,39 +28,48 @@ public class FighterController : MonoBehaviour {
 	private int intAnimOtherState;		// Animation of the opponent
 	private int intAnimOldOtherState;	// Animation of the opponent
 
-	private float fltRotation = 90;					// Rotation of a player
-	private float fltLastSynchronizationTime = 0f;	// Time of last synchronization
-	private float fltSyncDelay = 0f;				// Delay of the synchronization
-	private float fltSyncTime = 0f;					// time of synchronization
+	private float fltRotation					= 90f;	// Rotation of a player
+	private float fltLastSynchronizationTime	= 0f;	// Time of last synchronization
+	private float fltSyncDelay					= 0f;	// Delay of the synchronization
+	private float fltSyncTime					= 0f;	// time of synchronization
 
-	private Vector3 v3SyncStartPosition = Vector3.zero;		// initial position of the player
-	private Vector3 v3SyncEndPosition = Vector3.zero;		// final position of the player
+	private static float fltPositionOpponent	= 0f;		// position of opponent
+	private static float fltPositionDelta		= 0f;		// horizontal distance between the players
 
+	private Vector3 v3SyncStartPosition	= Vector3.zero;		// initial position of the player
+	private Vector3 v3SyncEndPosition	= Vector3.zero;		// final position of the player
 
+		
 
 	//These variables store the ID of the animation states (determined by name)
+	static int intTauntID			= Animator.StringToHash ("Base.Taunt");
+	static int intHitID				= Animator.StringToHash ("Base.Hit");
+	static int intDeathID			= Animator.StringToHash ("Base.Death");
+	static int intVictoryID			= Animator.StringToHash ("Base.Victory");
+	static int intUltimateGrabID	= Animator.StringToHash ("Base.Ultimate");
+	static int intLightStrikeID		= Animator.StringToHash ("Base.LightStrike");
+	static int intHeavyStrikeID		= Animator.StringToHash ("Base.HeavyStrike");
+	static int intSpecialID			= Animator.StringToHash ("Base.Special");
+	static int intGrabID			= Animator.StringToHash ("Base.Grab");
+	static int intFightID			= Animator.StringToHash ("Base.Fighting");
+	static int intIDLEID			= Animator.StringToHash ("Base.Idle");
+	static int intGuardID			= Animator.StringToHash ("Base.Guard");
 	static int intJumpID			= Animator.StringToHash ("Base.Jump");
 	static int intWalkID			= Animator.StringToHash ("Base.Walk");
 	static int intRunID				= Animator.StringToHash ("Base.Run");
-	static int intGuardID			= Animator.StringToHash ("Base.Guard");
-	static int intFightID			= Animator.StringToHash ("FightingIDLE");
-	static int intLightStrikeID		= Animator.StringToHash ("LightStrike");
-	static int intTauntID			= Animator.StringToHash ("Taunt");
-	static int intHeavyStrikeID		= Animator.StringToHash ("HeavyStrike");
-	static int intHitID				= Animator.StringToHash ("Hit");
-	static int intDeathID			= Animator.StringToHash ("Death");
-	static int intVictoryID			= Animator.StringToHash ("Victory");
-	static int intIDLEID			= Animator.StringToHash ("IDLE");
-	static int intClockID			= Animator.StringToHash ("Clock");
-	static int intYawnID			= Animator.StringToHash ("Yawn");
-	static int intSleepID			= Animator.StringToHash ("Sleep");
-	static int intEntryID			= Animator.StringToHash ("Entry");
-	static int intSpecialID			= Animator.StringToHash ("Special");
-	static int intGrabID			= Animator.StringToHash ("Grab");
-	static int intThrowID			= Animator.StringToHash ("Throw");
-	static int intUltimateGrabID	= Animator.StringToHash ("Ultimate");
-	static int intHoldID			= Animator.StringToHash ("Hold");
-	static int intUltimateStrikeID	= Animator.StringToHash ("UltStrike");
+
+
+
+
+	/*
+	static int intClockID			= Animator.StringToHash ("Base.Clock");
+	static int intYawnID			= Animator.StringToHash ("Base.Yawn");
+	static int intSleepID			= Animator.StringToHash ("Base.Sleep");
+	static int intEntryID			= Animator.StringToHash ("Base.Entry");
+	static int intThrowID			= Animator.StringToHash ("Base.Throw");
+	static int intHoldID			= Animator.StringToHash ("Base.Hold");
+	static int intUltimateStrikeID	= Animator.StringToHash ("Base.UltStrike");
+	*/
 
 	//////////////////////// EVENTS ///////////////////////////
 	void Start ()
@@ -70,15 +78,18 @@ public class FighterController : MonoBehaviour {
 	}
 	
 	void Update ()
-	{	
+	{
 		if (networkView.isMine)
 		{
+			fltPositionDelta = Mathf.Abs(transform.position.x - fltPositionOpponent);
+
 			InputMovement();
 		}
 		else
 		{
 			SyncedMovement();
 		}
+
 	}
 
 	void OnSerializeNetworkView(BitStream bstStream, NetworkMessageInfo nmiInfo){
@@ -193,10 +204,7 @@ public class FighterController : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.W))
 			{
 				anim.SetTrigger (intHeavyStrikeID);
-			}
-			
-			if(Input.GetKeyDown(KeyCode.H)){
-				Hit();
+				HitOpponent();
 			}
 			
 			//When the special strike key is pressed, special strike
@@ -211,7 +219,6 @@ public class FighterController : MonoBehaviour {
 			{
 				anim.SetTrigger (intUltimateGrabID);
 			}
-			
 			//INPUT-NEEDLESS ANIMATIONS
 		}
 	}
@@ -220,6 +227,9 @@ public class FighterController : MonoBehaviour {
 		fltSyncTime += Time.deltaTime;
 
 		rigidbody.position = Vector3.Lerp (v3SyncStartPosition, v3SyncEndPosition, fltSyncTime/fltSyncDelay);
+
+		fltPositionOpponent = rigidbody.position.x;
+
 		if(intAnimOldOtherState != intAnimOtherState){
 
 			anim.SetTrigger (intAnimOtherState);
@@ -228,6 +238,12 @@ public class FighterController : MonoBehaviour {
 
 		intAnimOldOtherState = intAnimOtherState;
 		
+	}
+
+	private void HitOpponent(){
+		if(fltPositionDelta <= 6.5f){
+			Debug.Log ("Hit !! (" + fltPositionDelta + ")");
+		}
 	}
 
 	private void Jump(int intAnimStateInfo){
