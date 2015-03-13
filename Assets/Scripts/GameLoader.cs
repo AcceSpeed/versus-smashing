@@ -5,8 +5,8 @@ public class GameLoader : MonoBehaviour {
 
 	public GameObject playerPrefabSusan;
 
-	public static GameObject player1;
-	public static GameObject player2;
+	public static NetworkViewID NetViewPlayer1;
+	public static NetworkViewID NetViewPlayer2;
 
 	private Vector3 playerSpawnPosition;
 	private Quaternion playerSpawnRotation;
@@ -16,9 +16,6 @@ public class GameLoader : MonoBehaviour {
 	public static bool blnResetStage = false;
 
 	void Start(){
-		player1 = null;
-		player2 = null;
-
 		SpawnPlayer (MainController.blnIsHost);
 	}
 
@@ -34,23 +31,27 @@ public class GameLoader : MonoBehaviour {
 			playerSpawnPosition = new Vector3 (-20f, 5.5f, 0f);
 			playerSpawnRotation.eulerAngles = new Vector3 (0, 90, 0);
 
-			player1 = Network.Instantiate (
+			GameObject player1 = Network.Instantiate (
 				playerPrefabSusan,
 				playerSpawnPosition,
 				playerSpawnRotation,
 				1
 			) as GameObject;
+
+			NetViewPlayer1 = player1.networkView.viewID;
 
 		} else {
 			playerSpawnPosition = new Vector3 (20f, 5.5f, 0f);
 			playerSpawnRotation.eulerAngles = new Vector3 (0, -90, 0);
 
-			player2 = Network.Instantiate (
+			GameObject player2 = Network.Instantiate (
 				playerPrefabSusan,
 				playerSpawnPosition,
 				playerSpawnRotation,
 				1
 			) as GameObject;
+
+			NetViewPlayer2 = player2.networkView.viewID;
 		}
 
 	}

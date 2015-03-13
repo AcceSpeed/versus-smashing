@@ -18,7 +18,11 @@ using System.Collections;
 
 public class FighterController : MonoBehaviour {
 
-	//variables
+	// Constants
+	public int intToIdle = 100;
+	public int intToBoredom = 800;
+
+	// variables
 	public int intMaximumSpeed;		// Maximum speed of the player
 	public int intJumpForce;		// Vertical force coefficient applied on a jump
 
@@ -36,6 +40,9 @@ public class FighterController : MonoBehaviour {
 	private static float fltPositionOpponent	= 0f;		// position of opponent
 	private static float fltPositionDelta		= 0f;		// horizontal distance between the players
 
+	private int intCountToIdle		= 0;
+	private int intCountToBoredom	= 0;
+
 	private Vector3 v3SyncStartPosition	= Vector3.zero;		// initial position of the player
 	private Vector3 v3SyncEndPosition	= Vector3.zero;		// final position of the player
 
@@ -52,19 +59,16 @@ public class FighterController : MonoBehaviour {
 	static int intSpecialID			= Animator.StringToHash ("Base.Special");
 	static int intGrabID			= Animator.StringToHash ("Base.Grab");
 	static int intFightID			= Animator.StringToHash ("Base.Fighting");
-	static int intIDLEID			= Animator.StringToHash ("Base.Idle");
+	static int intIdleID			= Animator.StringToHash ("Base.Idle");
 	static int intGuardID			= Animator.StringToHash ("Base.Guard");
 	static int intJumpID			= Animator.StringToHash ("Base.Jump");
 	static int intWalkID			= Animator.StringToHash ("Base.Walk");
 	static int intRunID				= Animator.StringToHash ("Base.Run");
-
-
+	static int intBoredomID			= Animator.StringToHash ("Base.Boredom");
 
 
 	/*
-	static int intClockID			= Animator.StringToHash ("Base.Clock");
-	static int intYawnID			= Animator.StringToHash ("Base.Yawn");
-	static int intSleepID			= Animator.StringToHash ("Base.Sleep");
+
 	static int intEntryID			= Animator.StringToHash ("Base.Entry");
 	static int intThrowID			= Animator.StringToHash ("Base.Throw");
 	static int intHoldID			= Animator.StringToHash ("Base.Hold");
@@ -79,6 +83,7 @@ public class FighterController : MonoBehaviour {
 	
 	void Update ()
 	{
+
 		if (networkView.isMine)
 		{
 			fltPositionDelta = Mathf.Abs(transform.position.x - fltPositionOpponent);
@@ -137,6 +142,33 @@ public class FighterController : MonoBehaviour {
 
 			// get the current state of the animation
 			intAnimStateInfo = anim.GetCurrentAnimatorStateInfo(0).nameHash;
+
+			Debug.Log (intCountToIdle + " - " + intCountToBoredom);
+
+			// idle management
+			if(!Input.anyKey){
+				if(intCountToIdle < intToIdle){
+					intCountToIdle++;
+				}
+				else if(intCountToBoredom < intToBoredom){
+					if(intCountToBoredom == 0){
+						anim.SetTrigger(intIdleID);
+					}
+					intCountToBoredom++;
+
+					if(anim.GetInteger(intBoredomID) != 0){
+						anim.SetInteger(intBoredomID,0);
+					}
+				}
+				else{
+					intCountToBoredom = 1;
+					anim.SetInteger(intBoredomID,RandomInteger(1,3));
+				}
+			}
+			else{
+				intCountToIdle = 0;
+				intCountToBoredom = 0;
+			}
 
 			//When the guard key is pressed, guard.
 			if(Input.GetKey(KeyCode.T))
@@ -219,7 +251,6 @@ public class FighterController : MonoBehaviour {
 			{
 				anim.SetTrigger (intUltimateGrabID);
 			}
-			//INPUT-NEEDLESS ANIMATIONS
 		}
 	}
 
@@ -243,6 +274,7 @@ public class FighterController : MonoBehaviour {
 	private void HitOpponent(){
 		if(fltPositionDelta <= 6.5f){
 			Debug.Log ("Hit !! (" + fltPositionDelta + ")");
+			networkView.RPC("Hit", RPCMode.Others);
 		}
 	}
 
@@ -253,10 +285,29 @@ public class FighterController : MonoBehaviour {
 		}
 	}
 
-	private void Hit(){
+	[RPC] private void Hit(){
 		anim.SetTrigger (intHitID);
 	}
-	
+
+	private int RandomInteger(int intStart, int intEnd){
+
+		if(intStart == intEnd){
+			return intStart;
+		}
+		else if(intStart > intEnd){
+			int intTemp = intStart;
+			intStart = intEnd;
+			intEnd = intTemp;
+		}
+
+		int intRandomValue = Random.Range(0,10000);
+		
+		intRandomValue %= (Mathf.Abs(intEnd-intStart) + 1);
+		
+		intRandomValue += intStart;		
+		return intRandomValue;
+	}
+
 	private void EndJump(){
 		anim.SetBool (intJumpID, false);
 	}
