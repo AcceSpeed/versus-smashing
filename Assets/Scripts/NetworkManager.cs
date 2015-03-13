@@ -64,10 +64,6 @@ public class NetworkManager : MonoBehaviour {
 		Application.LoadLevel ("Arena");
 	}
 
-	void OnServerInitialized()
-	{
-	}
-
 	void OnMasterServerEvent(MasterServerEvent msEvent)
 	{
 		if (msEvent == MasterServerEvent.HostListReceived) {
@@ -81,6 +77,11 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnConnectedToServer(){
 		LoadLevel ();
+	}
+
+	void OnDisconnectedFromServer ()
+	{
+		Application.LoadLevel("MainMenu");
 	}
 	
 }

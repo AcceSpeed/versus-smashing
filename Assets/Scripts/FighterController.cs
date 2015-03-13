@@ -40,6 +40,8 @@ public class FighterController : MonoBehaviour {
 	private static float fltPositionOpponent	= 0f;		// position of opponent
 	private static float fltPositionDelta		= 0f;		// horizontal distance between the players
 
+	private static bool blnIsHit = false;
+
 	private int intCountToIdle		= 0;
 	private int intCountToBoredom	= 0;
 
@@ -84,6 +86,31 @@ public class FighterController : MonoBehaviour {
 	void Update ()
 	{
 
+		// idle management
+		if(!Input.anyKey){
+			if(intCountToIdle < intToIdle){
+				intCountToIdle++;
+			}
+			else if(intCountToBoredom < intToBoredom){
+				if(intCountToBoredom == 0){
+					anim.SetTrigger(intIdleID);
+				}
+				intCountToBoredom++;
+				
+				if(anim.GetInteger(intBoredomID) != 0){
+					anim.SetInteger(intBoredomID,0);
+				}
+			}
+			else{
+				intCountToBoredom = 1;
+				anim.SetInteger(intBoredomID,RandomInteger(1,3));
+			}
+		}
+		else{
+			intCountToIdle = 0;
+			intCountToBoredom = 0;
+		}
+
 		if (networkView.isMine)
 		{
 			fltPositionDelta = Mathf.Abs(transform.position.x - fltPositionOpponent);
@@ -101,6 +128,7 @@ public class FighterController : MonoBehaviour {
 		Vector3 v3SyncPosition = Vector3.zero;
 		Vector3 v3SyncRotation = Vector3.zero;
 		int intSyncAnimation = 0;
+		bool blnSyncIsHit = false;
 
 		if(bstStream.isWriting){
 			v3SyncPosition = rigidbody.position;
@@ -116,6 +144,10 @@ public class FighterController : MonoBehaviour {
 			}
 
 			intAnimOldStateInfo = intAnimStateInfo;
+
+			blnSyncIsHit = blnIsHit;
+			bstStream.Serialize(ref blnSyncIsHit);
+
 		}
 
 		if(bstStream.isReading){
@@ -133,6 +165,9 @@ public class FighterController : MonoBehaviour {
 
 			bstStream.Serialize(ref intSyncAnimation);
 			intAnimOtherState = intSyncAnimation;
+
+			bstStream.Serialize(ref blnSyncIsHit);
+			blnIsHit = blnSyncIsHit;
 		}
 	}
 
@@ -143,31 +178,9 @@ public class FighterController : MonoBehaviour {
 			// get the current state of the animation
 			intAnimStateInfo = anim.GetCurrentAnimatorStateInfo(0).nameHash;
 
-			Debug.Log (intCountToIdle + " - " + intCountToBoredom);
-
-			// idle management
-			if(!Input.anyKey){
-				if(intCountToIdle < intToIdle){
-					intCountToIdle++;
-				}
-				else if(intCountToBoredom < intToBoredom){
-					if(intCountToBoredom == 0){
-						anim.SetTrigger(intIdleID);
-					}
-					intCountToBoredom++;
-
-					if(anim.GetInteger(intBoredomID) != 0){
-						anim.SetInteger(intBoredomID,0);
-					}
-				}
-				else{
-					intCountToBoredom = 1;
-					anim.SetInteger(intBoredomID,RandomInteger(1,3));
-				}
-			}
-			else{
-				intCountToIdle = 0;
-				intCountToBoredom = 0;
+			if(blnIsHit){
+				Hit();
+				blnIsHit = false;
 			}
 
 			//When the guard key is pressed, guard.
@@ -237,6 +250,7 @@ public class FighterController : MonoBehaviour {
 			{
 				anim.SetTrigger (intHeavyStrikeID);
 				HitOpponent();
+
 			}
 			
 			//When the special strike key is pressed, special strike
@@ -270,14 +284,7 @@ public class FighterController : MonoBehaviour {
 		intAnimOldOtherState = intAnimOtherState;
 		
 	}
-
-	private void HitOpponent(){
-		if(fltPositionDelta <= 6.5f){
-			Debug.Log ("Hit !! (" + fltPositionDelta + ")");
-			networkView.RPC("Hit", RPCMode.Others);
-		}
-	}
-
+	
 	private void Jump(int intAnimStateInfo){
 		if (Mathf.Floor(Mathf.Abs(rigidbody.velocity.y)) == 0.0f && intAnimStateInfo != intJumpID) {
 			rigidbody.AddForce(Vector3.up * intJumpForce );
@@ -285,10 +292,18 @@ public class FighterController : MonoBehaviour {
 		}
 	}
 
-	[RPC] private void Hit(){
+	private void HitOpponent(){
+		if(fltPositionDelta <= 6.5f){
+			blnIsHit = true;
+		}
+	}
+
+	// synchronized action to the onnonent character
+	private void Hit(){
 		anim.SetTrigger (intHitID);
 	}
 
+	// random int number generator
 	private int RandomInteger(int intStart, int intEnd){
 
 		if(intStart == intEnd){
@@ -300,14 +315,17 @@ public class FighterController : MonoBehaviour {
 			intEnd = intTemp;
 		}
 
-		int intRandomValue = Random.Range(0,10000);
-		
-		intRandomValue %= (Mathf.Abs(intEnd-intStart) + 1);
-		
+		int intDeltaValues = Mathf.Abs(intEnd-intStart);
+
+		int intRandomValue = Random.Range(0, 10 * intDeltaValues);
+		intRandomValue %= (intDeltaValues + 1);
 		intRandomValue += intStart;		
+
 		return intRandomValue;
 	}
 
+
+	// stop the jump (animation event)
 	private void EndJump(){
 		anim.SetBool (intJumpID, false);
 	}
