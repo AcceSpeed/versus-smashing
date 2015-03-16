@@ -1,8 +1,8 @@
 ﻿//*********************************************************
 // Societe: ETML
 // Auteur : Vincent Mouquin
-// Date : 16.02.15
-// But : Network control test script
+// Date : 09.02.15
+// But : Network control script
 //*********************************************************
 // Modifications:
 // Date :

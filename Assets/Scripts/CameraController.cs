@@ -1,4 +1,19 @@
-﻿using UnityEngine;
+﻿//*********************************************************
+// Societe: ETML
+// Auteur : Miguel Dias
+// Date : 20.02.15
+// But : Camera behaviour controller script
+//*********************************************************
+// Modifications:
+// Date :
+// Auteur :
+// Raison :
+//*********************************************************
+// Date :
+// Auteur :
+// Raison :
+//*********************************************************
+using UnityEngine;
 using System.Collections;
 
 public class CameraController : MonoBehaviour {

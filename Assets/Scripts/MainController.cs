@@ -1,7 +1,7 @@
 ﻿//*********************************************************
 // Societe: ETML
 // Auteur : Miguel Dias
-// Date : 13.02.2015
+// Date : 18.02.2015
 // But : Main Controller class file who manage the entire fight
 //*********************************************************
 // Modifications:

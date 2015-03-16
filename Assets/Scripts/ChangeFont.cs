@@ -1,4 +1,19 @@
-﻿using UnityEngine;
+﻿//*********************************************************
+// Societe: ETML
+// Auteur : Miguel Dias
+// Date : 16.02.15
+// But : Player and animations controller script
+//*********************************************************
+// Modifications:
+// Date :
+// Auteur :
+// Raison :
+//*********************************************************
+// Date :
+// Auteur :
+// Raison :
+//*********************************************************
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
