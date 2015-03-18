@@ -2,50 +2,59 @@
 // Societe: ETML
 // Auteur : Miguel Dias
 // Date : 05.03.15
-// But : Player and animations controller script
-//*********************************************************
-// Modifications:
-// Date :
-// Auteur :
-// Raison :
-//*********************************************************
-// Date :
-// Auteur :
-// Raison :
+// But : Script handling the start of a match
 //*********************************************************
 using UnityEngine;
 using System.Collections;
 
 public class GameLoader : MonoBehaviour {
+	
 
-	public GameObject playerPrefabSusan;
+	//Variables
+	public GameObject playerPrefabSusan;			//Prefab of the fighter
 
-	public static NetworkViewID NetViewPlayer1;
-	public static NetworkViewID NetViewPlayer2;
+	public static NetworkViewID NetViewPlayer1;		//NetworkView of the first fighter
+	public static NetworkViewID NetViewPlayer2;		//NetworkView of the 2nd fighter 
 
-	private Vector3 playerSpawnPosition;
-	private Quaternion playerSpawnRotation;
+	private Vector3 playerSpawnPosition;			//Spawn position
+	private Quaternion playerSpawnRotation;			//Spawn rotation
 
-	private GameObject[] playersToDestroy;
+	private GameObject[] playersToDestroy;			//Used to get all the objects that will be destroyed upon start
 
-	public static bool blnResetStage = false;
+	public static bool blnResetStage = false;		//Used to reset the stage once the two softwares are connected
 
+	// *******************************************************************
+	// Function called at the instantiation of the class
+	// *******************************************************************
 	void Start(){
 		SpawnPlayer (MainController.blnIsHost);
 	}
 
+	// *******************************************************************
+	// Function called at each game frame
+	// *******************************************************************
 	void Update(){
 		if (blnResetStage) {
 			ResetStage();
 		}
 	}
 
+	// *******************************************************************
+	// Nom : SpawnPlayer
+	// But : Spwaning the two fighters (in the right position) 
+	// Retour: Void
+	// Param.: None
+	// *******************************************************************
 	private void SpawnPlayer(bool blnHost){
-		
+
+		//In the case where the software is the one considered as the server, spawns his character facing the right, on the left part of the stage
 		if (blnHost) {
+
+			//Set the position and rotation
 			playerSpawnPosition = new Vector3 (-20f, 5.5f, 0f);
 			playerSpawnRotation.eulerAngles = new Vector3 (0, 90, 0);
 
+			//Instantiate the prefab
 			GameObject player1 = Network.Instantiate (
 				playerPrefabSusan,
 				playerSpawnPosition,
@@ -55,10 +64,15 @@ public class GameLoader : MonoBehaviour {
 
 			NetViewPlayer1 = player1.networkView.viewID;
 
+
+		//In the case where the software is the one considered as the client, spawns his character facing the left, on the right part of the stage
 		} else {
+
+			//Set the position and rotation
 			playerSpawnPosition = new Vector3 (20f, 5.5f, 0f);
 			playerSpawnRotation.eulerAngles = new Vector3 (0, -90, 0);
 
+			//Instantiate the prefab
 			GameObject player2 = Network.Instantiate (
 				playerPrefabSusan,
 				playerSpawnPosition,
@@ -71,15 +85,25 @@ public class GameLoader : MonoBehaviour {
 
 	}
 
+	// *******************************************************************
+	// Nom : ResetStage
+	// But : Resetting the stage once both of the softwares are ready and connected 
+	//(since the first one, aka the server, will have his game starting as a pratice right at the start)
+	// Retour: Void
+	// Param.: None
+	// *******************************************************************
 	private void ResetStage(){
 		blnResetStage = false;
 
+		//Finds all the objects tagged with "Player"
 		playersToDestroy = GameObject.FindGameObjectsWithTag ("Player");
-		
+
+		//Destroys them
 		foreach (GameObject player in playersToDestroy) {
 			Destroy(player);
 		}
-		
+
+		//Spawns the two fighters
 		SpawnPlayer (MainController.blnIsHost);
 	}
 }

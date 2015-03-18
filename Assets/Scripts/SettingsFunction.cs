@@ -4,15 +4,6 @@
 // Date : 16.02.2015
 // But : option class file
 //*********************************************************
-// Modifications:
-// Date : 
-// Auteur : 
-// Raison : 
-//*********************************************************
-// Date :
-// Auteur :
-// Raison :
-//********************************************************* 
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,6 +25,10 @@ public class SettingsFunction : MonoBehaviour {
 	private int intScreenHeight;
 	private Resolution[] arr_resolutions ;
 
+
+	// *******************************************************************
+	// Function called at the instantiation of the class
+	// *******************************************************************
 	void Start (){
 		arr_resolutions = Screen.resolutions;					// Get all avaliable resolutions
 		sldResolution.maxValue = arr_resolutions.Length - 1;	// Set the maximum of slide

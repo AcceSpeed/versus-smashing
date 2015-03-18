@@ -2,16 +2,7 @@
 // Societe: ETML
 // Auteur : Miguel Dias
 // Date : 16.02.15
-// But : Player and animations controller script
-//*********************************************************
-// Modifications:
-// Date :
-// Auteur :
-// Raison :
-//*********************************************************
-// Date :
-// Auteur :
-// Raison :
+// But : Font management script
 //*********************************************************
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,12 +16,20 @@ public class ChangeFont : MonoBehaviour {
 	public Font fontFont;
 	private Text[] arr_textTexts;
 
-	// Use this for initialization
+	//
+	//TODO: include the prefab texts
+	//
+
+	// *******************************************************************
+	// Function called at the instantiation of the class
+	// *******************************************************************
 	void Start () {
 
-		arr_textTexts = GetComponentsInChildren<Text> (true);	// tableau des textes
+		//Array of the texts
+		arr_textTexts = GetComponentsInChildren<Text> (true);
 
-		// change la police de tous les textes si spécifiée
+
+		//Change the font of all the texts if specified
 		if(fontFont != null){
 			foreach(Text text in arr_textTexts){
 				text.font = fontFont;

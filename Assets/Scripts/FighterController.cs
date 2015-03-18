@@ -10,10 +10,12 @@ using System.Collections;
 public class FighterController : MonoBehaviour {
 
 	// Constants
+
+
+	// variables
 	public int intToIdle = 100;		// Const. used to define the time before IDLE starts
 	public int intToBoredom = 800;	// Const. used to define the time before boring state starts
 
-	// variables
 	public int intMaximumSpeed;		// Maximum speed of the player
 	public int intJumpForce;		// Vertical force coefficient applied on a jump
 
@@ -378,7 +380,7 @@ public class FighterController : MonoBehaviour {
 	
 	// *******************************************************************
 	// Nom : Hit
-	// But : synchronized action to the onnonent character
+	// But : Playing the hit animation if there was a hit
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
@@ -388,15 +390,17 @@ public class FighterController : MonoBehaviour {
 	 
 	// *******************************************************************
 	// Nom : RandomInteger
-	// But : random int number generator
-	// Retour: Void
+	// But : Random int generator, used notably to choose a "bored" IDLE action to perform
+	// Retour: intRandomValue
 	// Param.: None
 	// *******************************************************************
 	private int RandomInteger(int intStart, int intEnd){
 
+		//If the range contains only one number, returns it
 		if(intStart == intEnd){
 			return intStart;
 		}
+		//If the first number of the range is superior to the last, inverts them
 		else if(intStart > intEnd){
 			int intTemp = intStart;
 			intStart = intEnd;
@@ -415,7 +419,7 @@ public class FighterController : MonoBehaviour {
 
 	// *******************************************************************
 	// Nom : EndJump
-	// But : stop the jump (animation event)
+	// But : Stopping the jump animation event
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
