@@ -13,11 +13,14 @@ public class FighterController : MonoBehaviour {
 
 
 	// variables
-	public int intToIdle = 100;		// Const. used to define the time before IDLE starts
-	public int intToBoredom = 800;	// Const. used to define the time before boring state starts
+	public int intToIdle	= 100;		// Const. used to define the time before IDLE starts
+	public int intToBoredom	= 800;	// Const. used to define the time before boring state starts
 
 	public int intMaximumSpeed;		// Maximum speed of the player
 	public int intJumpForce;		// Vertical force coefficient applied on a jump
+
+	public static int intHealthSelf		= 100;	// Health of the player
+	public static int intHealthOpponent	= 100;	// Health of the opponent
 
 	private Animator anim;				// Animation controller
 	private int intAnimStateInfo;		// Current state of the animation
@@ -25,9 +28,9 @@ public class FighterController : MonoBehaviour {
 	private int intAnimOtherState;		// Animation of the opponent
 	private int intAnimOldOtherState;	// Animation of the opponent
 
-	private float fltLightStrikeRange = 0f;		// range of the Light Strike
-	private float fltHeavyStrikeRange = 0.5f;	// range of the Heavy Strike
-	private float fltSpecialStrikeRange = 0.5f;	// range of the Special Strike
+	private float fltLightStrikeRange	= 0f;		// range of the Light Strike
+	private float fltHeavyStrikeRange	= 0.5f;	// range of the Heavy Strike
+	private float fltSpecialStrikeRange	= 0.5f;	// range of the Special Strike
 
 	private float fltRotation					= 90f;	// Rotation of a player
 	private float fltLastSynchronizationTime	= 0f;	// Time of last synchronization
@@ -37,8 +40,8 @@ public class FighterController : MonoBehaviour {
 	private static float fltPositionOpponent	= 0f;	// position of opponent
 	private static float fltPositionDelta		= 0f;	// horizontal distance between the players
 
-	private static bool blnHits = false;		// if a character hits the opponent
-	private static bool blnIsHit = false;		// if a character is hit
+	private static bool blnHits		= false;		// if a character hits the opponent
+	private static bool blnIsHit	= false;		// if a character is hit
 
 	private int intCountToIdle		= 0;	// Used to count the time until it reaches the corresponding Const. (IDLE)
 	private int intCountToBoredom	= 0;	// Used to count the time until it reaches the corresponding Const. (Bored state)
@@ -84,6 +87,14 @@ public class FighterController : MonoBehaviour {
 	{
 		//Gets the Animator from Unity, will be used later
 		anim = GetComponent<Animator>();
+
+		// set the health at max
+		intHealthSelf		= 100;
+		intHealthOpponent	= 100;
+
+		// set the bools at false
+		blnIsHit	= false;
+		blnHits		= false;
 	}
 
 	// *******************************************************************
@@ -155,6 +166,7 @@ public class FighterController : MonoBehaviour {
 		Vector3 v3SyncPosition = Vector3.zero;
 		Vector3 v3SyncRotation = Vector3.zero;
 		int intSyncAnimation = 0;
+		int intSyncHealth = 100;
 		bool blnSyncIsHit = false;
 
 		// When the software is writing, gets the current position and rotation of the character and serializes it,
@@ -185,6 +197,10 @@ public class FighterController : MonoBehaviour {
 				bstStream.Serialize(ref blnSyncIsHit);
 				blnHits = false;
 			}
+
+			// sync the health
+			intSyncHealth = intHealthSelf;
+			bstStream.Serialize(ref intSyncHealth);
 		}
 
 		// When the software is reading, obtains the serialized position and rotation of the character and applies
@@ -213,10 +229,13 @@ public class FighterController : MonoBehaviour {
 
 			//Sync the "Hit ?" state
 			bstStream.Serialize(ref blnSyncIsHit);
-			Debug.Log (blnSyncIsHit);
 			if(blnSyncIsHit){
 				blnIsHit = blnSyncIsHit;
 			}
+
+			// sync the health
+			bstStream.Serialize(ref intSyncHealth);
+			intHealthOpponent = intSyncHealth;
 		}
 	}
 
@@ -389,18 +408,18 @@ public class FighterController : MonoBehaviour {
 		//If the distance between the two fighters is small enough
 		if(fltPositionDelta - fltRange <= 6.5f){
 			blnHits = true;
-			Debug.Log ("Hit !");
 		}
 	}
 	
 	// *******************************************************************
 	// Nom : Hit
-	// But : Playing the hit animation if there was a hit
+	// But : Playing the hit animation if there was a hit and reduce health
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
 	private void Hit(){
 		anim.SetTrigger (intHitID);
+		intHealthSelf -= 5;
 	}
 	 
 	// *******************************************************************

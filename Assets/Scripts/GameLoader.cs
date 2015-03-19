@@ -2,9 +2,10 @@
 // Societe: ETML
 // Auteur : Miguel Dias
 // Date : 05.03.15
-// But : Script handling the start of a match
+// But : Script handling the start of a match and all the informations linked to it
 //*********************************************************
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameLoader : MonoBehaviour {
@@ -15,6 +16,9 @@ public class GameLoader : MonoBehaviour {
 
 	public static NetworkViewID NetViewPlayer1;		//NetworkView of the first fighter
 	public static NetworkViewID NetViewPlayer2;		//NetworkView of the 2nd fighter 
+
+	public Slider sldLifePlayer1;	// life of player 1
+	public Slider sldLifePlayer2;	// life of player 2
 
 	private Vector3 playerSpawnPosition;			//Spawn position
 	private Quaternion playerSpawnRotation;			//Spawn rotation
@@ -27,6 +31,9 @@ public class GameLoader : MonoBehaviour {
 	// Function called at the instantiation of the class
 	// *******************************************************************
 	void Start(){
+		sldLifePlayer1.value = 100;
+		sldLifePlayer2.value = 100;
+
 		SpawnPlayer (MainController.blnIsHost);
 	}
 
@@ -36,6 +43,16 @@ public class GameLoader : MonoBehaviour {
 	void Update(){
 		if (blnResetStage) {
 			ResetStage();
+		}
+
+		// Update the life of the players 
+		if(MainController.blnIsHost){
+			sldLifePlayer1.value = FighterController.intHealthSelf;
+			sldLifePlayer2.value = FighterController.intHealthOpponent;
+		}
+		else{
+			sldLifePlayer2.value = FighterController.intHealthSelf;
+			sldLifePlayer1.value = FighterController.intHealthOpponent;
 		}
 	}
 

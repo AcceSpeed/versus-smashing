@@ -10,15 +10,16 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
 	//variables
-	public Transform tranPlayer;
-	private Transform tranCamera ;
-	private int HeightDecal = 10;
+	private GameObject[] arr_objPlayers;
+
+	private Transform tranCameraDefault ;	
+	public int HeightDecal;
 
 	// *******************************************************************
 	// Function called at the instantiation of the class
 	// *******************************************************************
 	void Start () {
-		tranCamera = this.transform;
+		tranCameraDefault = this.transform;
 	}
 
 	// *******************************************************************
@@ -26,14 +27,34 @@ public class CameraController : MonoBehaviour {
 	// *******************************************************************
 	void Update () {
 
-		//When the player moves, follows him
-		if (tranPlayer) {
-			transform.position = new Vector3(
-				tranPlayer.position.x,
-				tranPlayer.position.y + HeightDecal,
-				tranCamera.position.z
-			);	
+		arr_objPlayers = GameObject.FindGameObjectsWithTag("Player");
+
+		switch (arr_objPlayers.Length) {
+			case 1:
+				transform.position = new Vector3(
+					arr_objPlayers[0].transform.position.x,
+					arr_objPlayers[0].transform.position.y + HeightDecal,
+					tranCameraDefault.position.z
+				);
+				break;
+			case 2:
+				transform.position = new Vector3(
+					(arr_objPlayers[0].transform.position.x + arr_objPlayers[1].transform.position.x) / 2,
+					(arr_objPlayers[0].transform.position.y + arr_objPlayers[1].transform.position.y) / 2 + HeightDecal,
+					tranCameraDefault.position.z
+				);
+				break;
+			default:
+				break;
 		}
 
+		if(arr_objPlayers.Length == 1){
+			//When the player moves, follows him
+			transform.position = new Vector3(
+				arr_objPlayers[0].transform.position.x,
+				arr_objPlayers[0].transform.position.y + HeightDecal,
+				tranCameraDefault.position.z
+			);	
+		}
 	}
 }

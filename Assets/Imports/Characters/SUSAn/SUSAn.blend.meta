@@ -103,7 +103,7 @@ ModelImporter:
     13700016: RightFoLeg
     13700018: RightLeg
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
