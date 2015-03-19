@@ -25,15 +25,20 @@ public class FighterController : MonoBehaviour {
 	private int intAnimOtherState;		// Animation of the opponent
 	private int intAnimOldOtherState;	// Animation of the opponent
 
+	private float fltLightStrikeRange = 0f;		// range of the Light Strike
+	private float fltHeavyStrikeRange = 0.5f;	// range of the Heavy Strike
+	private float fltSpecialStrikeRange = 0.5f;	// range of the Special Strike
+
 	private float fltRotation					= 90f;	// Rotation of a player
 	private float fltLastSynchronizationTime	= 0f;	// Time of last synchronization
 	private float fltSyncDelay					= 0f;	// Delay of the synchronization
 	private float fltSyncTime					= 0f;	// time of synchronization
 
-	private static float fltPositionOpponent	= 0f;		// position of opponent
-	private static float fltPositionDelta		= 0f;		// horizontal distance between the players
+	private static float fltPositionOpponent	= 0f;	// position of opponent
+	private static float fltPositionDelta		= 0f;	// horizontal distance between the players
 
-	private static bool blnIsHit = false;
+	private static bool blnHits = false;		// if a character hits the opponent
+	private static bool blnIsHit = false;		// if a character is hit
 
 	private int intCountToIdle		= 0;	// Used to count the time until it reaches the corresponding Const. (IDLE)
 	private int intCountToBoredom	= 0;	// Used to count the time until it reaches the corresponding Const. (Bored state)
@@ -175,9 +180,11 @@ public class FighterController : MonoBehaviour {
 			intAnimOldStateInfo = intAnimStateInfo;
 
 			// Sync the current "Hit ?" state. 
-			blnSyncIsHit = blnIsHit;
-			bstStream.Serialize(ref blnSyncIsHit);
-
+			if(blnHits){
+				blnSyncIsHit = blnHits;
+				bstStream.Serialize(ref blnSyncIsHit);
+				blnHits = false;
+			}
 		}
 
 		// When the software is reading, obtains the serialized position and rotation of the character and applies
@@ -206,7 +213,10 @@ public class FighterController : MonoBehaviour {
 
 			//Sync the "Hit ?" state
 			bstStream.Serialize(ref blnSyncIsHit);
-			blnIsHit = blnSyncIsHit;
+			Debug.Log (blnSyncIsHit);
+			if(blnSyncIsHit){
+				blnIsHit = blnSyncIsHit;
+			}
 		}
 	}
 
@@ -230,93 +240,97 @@ public class FighterController : MonoBehaviour {
 				blnIsHit = false;
 			}
 
-			//When the guard key is pressed, guard.
-			if(Input.GetKey(KeyCode.T))
-			{
-				anim.SetTrigger (intGuardID);
-			}
-			else{
-				anim.ResetTrigger (intGuardID);
-			}
-			
-			//When the up arrow key is pressed, calls the jump function
-			if(Input.GetKeyDown(KeyCode.UpArrow))
-			{
-				Jump(intAnimStateInfo);
-			}
-			
-			//WALKING
-			
-			//When a walk key is pressed, walk. On release, get back to IDLE
-			if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
-			{
-				// If the previous state was walking, next one is running
-				if(anim.GetBool (intWalkID)== true){
-					anim.SetBool (intRunID, true);
+			if(intAnimStateInfo != intHitID){
+				//When the guard key is pressed, guard.
+				if(Input.GetKey(KeyCode.T))
+				{
+					anim.SetTrigger (intGuardID);
 				}
-
-				// Current state is walking
-				anim.SetBool (intWalkID, true);
-
-				//Depending of the key pressed (Right/Left), rotate right/left
-				if(Input.GetKey(KeyCode.RightArrow)){
-					transform.localEulerAngles = new Vector3(0.0f, fltRotation ,0.0f);
+				else{
+					anim.ResetTrigger (intGuardID);
 				}
-				else if(Input.GetKey(KeyCode.LeftArrow)){
-					transform.localEulerAngles = new Vector3(0.0f, -fltRotation ,0.0f);
+				
+				//When the up arrow key is pressed, calls the jump function
+				if(Input.GetKeyDown(KeyCode.UpArrow))
+				{
+					Jump(intAnimStateInfo);
 				}
+				
+				//WALKING
+				
+				//When a walk key is pressed, walk. On release, get back to IDLE
+				if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+				{
+					// If the previous state was walking, next one is running
+					if(anim.GetBool (intWalkID)== true){
+						anim.SetBool (intRunID, true);
+					}
 
-				//As long as the current speed is below the maxone, go faster
-				if(Mathf.Abs(rigidbody.velocity.x) <= intMaximumSpeed){
-					rigidbody.velocity += transform.forward * intMaximumSpeed / 12;
+					// Current state is walking
+					anim.SetBool (intWalkID, true);
+
+					//Depending of the key pressed (Right/Left), rotate right/left
+					if(Input.GetKey(KeyCode.RightArrow)){
+						transform.localEulerAngles = new Vector3(0.0f, fltRotation ,0.0f);
+					}
+					else if(Input.GetKey(KeyCode.LeftArrow)){
+						transform.localEulerAngles = new Vector3(0.0f, -fltRotation ,0.0f);
+					}
+
+					//As long as the current speed is below the maxone, go faster
+					if(Mathf.Abs(rigidbody.velocity.x) <= intMaximumSpeed){
+						rigidbody.velocity += transform.forward * intMaximumSpeed / 12;
+					}
 				}
-			}
-			//When no walking key is pressed, doesn't play (or stops playing) the walking/running animations
-			else{
-				anim.SetBool (intWalkID, false);
-				anim.SetBool (intRunID, false);
+				//When no walking key is pressed, doesn't play (or stops playing) the walking/running animations
+				else{
+					anim.SetBool (intWalkID, false);
+					anim.SetBool (intRunID, false);
 
-				//If the keys are released or not pressed, don't move
-				rigidbody.velocity = new Vector3(0.0f,rigidbody.velocity.y,rigidbody.velocity.z);
-			}
-			
-			//When the taunt key is pressed, taunt
-			if(Input.GetKeyDown(KeyCode.P))
-			{
-				anim.SetTrigger (intTauntID);
-			}
-			
-			//When the grab key is pressed, try to grab
-			if(Input.GetKeyDown(KeyCode.G))
-			{
-				anim.SetTrigger (intGrabID);
-			}
-			
-			//When strike key is pressed, strike
-			if(Input.GetKeyDown(KeyCode.Q))
-			{
-				anim.SetTrigger (intLightStrikeID);
-			}
-			
-			//When the second strike key is pressed, strike (harder)
-			if(Input.GetKeyDown(KeyCode.W))
-			{
-				anim.SetTrigger (intHeavyStrikeID);
-				HitOpponent();
+					//If the keys are released or not pressed, don't move
+					rigidbody.velocity = new Vector3(0.0f,rigidbody.velocity.y,rigidbody.velocity.z);
+				}
+				
+				//When the taunt key is pressed, taunt
+				if(Input.GetKeyDown(KeyCode.P))
+				{
+					anim.SetTrigger (intTauntID);
+				}
+				
+				//When the grab key is pressed, try to grab
+				if(Input.GetKeyDown(KeyCode.G))
+				{
+					anim.SetTrigger (intGrabID);
+				}
+				
+				//When strike key is pressed, strike
+				if(Input.GetKeyDown(KeyCode.Q))
+				{
+					anim.SetTrigger (intLightStrikeID);
+					HitOpponent(fltLightStrikeRange);
+				}
+				
+				//When the second strike key is pressed, strike (harder)
+				if(Input.GetKeyDown(KeyCode.W))
+				{
+					anim.SetTrigger (intHeavyStrikeID);
+					HitOpponent(fltHeavyStrikeRange);
 
-			}
-			
-			//When the special strike key is pressed, special strike
-			if(Input.GetKeyDown(KeyCode.E))
-			{
-				anim.SetTrigger (intSpecialID);
-			}
-			
-			//When the ultimate key is pressed, ultimate (starting with a grab animation, in SUSAn' case)
-			//NEED THE HEALTH OF THE ADVERSARY TO BE UNDER 33% <= NOT IMPLEMENTED YET
-			if(Input.GetKeyDown(KeyCode.R))
-			{
-				anim.SetTrigger (intUltimateGrabID);
+				}
+				
+				//When the special strike key is pressed, special strike
+				if(Input.GetKeyDown(KeyCode.E))
+				{
+					anim.SetTrigger (intSpecialID);
+					HitOpponent(fltSpecialStrikeRange);
+				}
+				
+				//When the ultimate key is pressed, ultimate (starting with a grab animation, in SUSAn' case)
+				//NEED THE HEALTH OF THE ADVERSARY TO BE UNDER 33% <= NOT IMPLEMENTED YET
+				if(Input.GetKeyDown(KeyCode.R))
+				{
+					anim.SetTrigger (intUltimateGrabID);
+				}
 			}
 		}
 	}
@@ -371,10 +385,11 @@ public class FighterController : MonoBehaviour {
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
-	private void HitOpponent(){
+	private void HitOpponent(float fltRange){
 		//If the distance between the two fighters is small enough
-		if(fltPositionDelta <= 6.5f){
-			blnIsHit = true;
+		if(fltPositionDelta - fltRange <= 6.5f){
+			blnHits = true;
+			Debug.Log ("Hit !");
 		}
 	}
 	

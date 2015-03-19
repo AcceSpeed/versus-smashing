@@ -39,6 +39,10 @@ public class ButtonFunctions : MonoBehaviour {
 	// *******************************************************************
 	void Update(){
 
+		if(UIElements[0].activeSelf && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))){
+			ChooseName();
+		}
+
 		//When the Main Menu is loaded, start to refresh the DisplayRooms function every 50 frames (defined by a const.)
 		if (Application.loadedLevelName == "MainMenu" && UIElements[1].activeSelf) {
 			if(intTimerStatus == INT_TIMER_REFRESH){
