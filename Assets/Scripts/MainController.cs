@@ -19,6 +19,14 @@ using System.Collections;
 
 public class MainController : MonoBehaviour {
 
+	//Constants
+
+	public const int INT_MAX_ROUNDS = 3;
+	
+	public const string STR_QUEUE_TYPE_SIMPLE = "Simple";
+	public const string STR_QUEUE_TYPE_MATCH = "Match";
+	public const string STR_QUEUE_TYPE_TRAIN = "Train";
+
 	//Variables
 
 	public static bool blnMatchOver;			//Used when a round is over

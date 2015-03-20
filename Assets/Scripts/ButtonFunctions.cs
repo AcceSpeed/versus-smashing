@@ -10,17 +10,22 @@ using System.Collections;
 
 public class ButtonFunctions : MonoBehaviour {
 
+	private const int INT_TIMER_REFRESH = 500;
+
 	public GameObject GObjRoomsContainer;
 	public GameObject GObjRoomButton;
 	public GameObject[] UIElements;
 	public Text txtPlayerName;
 
-	private GameObject roomButtonInstantiate;
+	private GameObject[] buttonsToDestroy;			//Used to get all the buttons that will be destroyed upon refresh
+
+
+	public GameObject roomButtonInstantiate;
 	private int intButtonDecal = 10;
 	private int intButtonMultiple = 0;
-	private int intTimerStatus = 50;
+	private int intTimerStatus = INT_TIMER_REFRESH;
+	private string strNameRoomToJoin;
 
-	private const int INT_TIMER_REFRESH = 50;
 
 	// *******************************************************************
 	// Function called at the instantiation of the class
@@ -79,8 +84,18 @@ public class ButtonFunctions : MonoBehaviour {
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
-	private void CreateGame (){
+	public void CreateGame (){
+		NetworkManager.StartServer (MainController.STR_QUEUE_TYPE_SIMPLE);
+	}
 
+	// *******************************************************************
+	// Nom : TrainingGame
+	// But : 
+	// Retour: Void
+	// Param.: None
+	// *******************************************************************
+	public void TrainingGame (){
+		NetworkManager.StartServer (MainController.STR_QUEUE_TYPE_TRAIN);
 	}
 
 	// *******************************************************************
@@ -99,22 +114,36 @@ public class ButtonFunctions : MonoBehaviour {
 			string count = NetworkManager.hostList.GetLength(0).ToString();
 			intButtonMultiple = 0;
 
+			buttonsToDestroy = GameObject.FindGameObjectsWithTag ("RoomButton");
+			//Destroys them
+			foreach (GameObject button in buttonsToDestroy) {
+				Destroy(button);
+			}
+
 			//As long as there are hosts in the list, creates buttons with the name of the room's creator on it
 			foreach (var host in NetworkManager.hostList) {
-				
-				roomButtonInstantiate = Instantiate(
-					GObjRoomButton
-				) as GameObject;
 
-				//Button instantiation with the text
-				roomButtonInstantiate.transform.SetParent(GObjRoomsContainer.transform, false);
-				roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonDecal ;
-				roomButtonInstantiate.GetComponentInChildren<Text>().text = host.gameName   ;
-					
-				intButtonMultiple++;
+				//If, of course, they are not matchmaking rooms or training rooms
+				if(host.comment==MainController.STR_QUEUE_TYPE_SIMPLE){
+				
+					roomButtonInstantiate = Instantiate(
+						GObjRoomButton
+					) as GameObject;
+
+					//Button instantiation with the text
+					roomButtonInstantiate.transform.SetParent(GObjRoomsContainer.transform, false);
+					roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonDecal ;
+					roomButtonInstantiate.GetComponentInChildren<Text>().text = host.gameName   ;
+
+					Button roomButton = roomButtonInstantiate.GetComponent<Button>();
+					roomButton.onClick.AddListener(() => NetworkManager.JoinServer(host));
+
+					intButtonMultiple++;
+				}
 			}	
 		}
 	}
+
 
 	// *******************************************************************
 	// Nom : ChooseName

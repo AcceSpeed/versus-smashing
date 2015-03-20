@@ -13,8 +13,8 @@ public class NetworkManager : MonoBehaviour {
 	private const string STR_GAME_NAME = "VersusSmashingNetwork";	//Specifiy the name of the game when registering a room on the MasterServer
 
 	//Variables
-	private string strRoomComment;		//Rooms informations can contain strings, this will be used to differenciate Matchmaking v. non-matchmaking rooms
-	
+	private static string strRoomComment;		//Rooms informations can contain strings, this will be used to differenciate Matchmaking v. non-matchmaking rooms
+
 	public static HostData[] hostList;	//Used to store the informations about all the active "matches" (rooms) registered on the MasterServer for a defined game
 
 
@@ -24,12 +24,15 @@ public class NetworkManager : MonoBehaviour {
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
-	public static void StartServer()
+	public static void StartServer(string strQueueType)
 	{
+		//
+		strRoomComment = strQueueType;
+
 		//Initialize a room on the Unity Master Server, using the max. number of players, the port which will be used, the NAT options, 
 		//the game name, and the name of the player (obtained on login) as the name of the room
 		Network.InitializeServer (2, 25000, !Network.HavePublicAddress ());
-		MasterServer.RegisterHost (STR_GAME_NAME, MainController.strPlayerName);
+		MasterServer.RegisterHost (STR_GAME_NAME, MainController.strPlayerName, strQueueType);
 
 		//When registreing, the software becomes a server, then loads the game
 		MainController.blnIsHost = true;
@@ -73,7 +76,7 @@ public class NetworkManager : MonoBehaviour {
 		if (hostList != null) {
 			//checks the avaliability of the hosts
 			foreach (HostData host in hostList) {
-				if(host.connectedPlayers == 1){
+				if(host.connectedPlayers == 1 && host.comment==MainController.STR_QUEUE_TYPE_MATCH){
 					//joins the host and stops the search
 					JoinServer(host);
 					return;
@@ -82,7 +85,7 @@ public class NetworkManager : MonoBehaviour {
 		}
 
 		// set self as host
-		StartServer();
+		StartServer(MainController.STR_QUEUE_TYPE_MATCH);
 	}
 
 	// *******************************************************************
