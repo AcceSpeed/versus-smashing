@@ -102,10 +102,6 @@ public class FighterController : MonoBehaviour {
 	// *******************************************************************
 	void Update ()
 	{
-
-		Debug.Log (blnIsHit);
-		Debug.Log (blnHits);
-
 		// Idle management: as soon as no key press is detected, wait for a set number of frames 
 		// and then change for the next state
 		if(!Input.anyKey){
@@ -172,8 +168,6 @@ public class FighterController : MonoBehaviour {
 		int intSyncHealth		= 100;
 		bool blnSyncIsHit		= false;
 
-		Debug.Log (blnSyncIsHit);
-
 		// When the software is writing, gets the current position and rotation of the character and serializes it,
 		// thus effectively sending it in a two-step process to the other player
 		if(bstStream.isWriting){
@@ -196,16 +190,17 @@ public class FighterController : MonoBehaviour {
 			// The current anim state is now considered as old, store its value
 			intAnimOldStateInfo = intAnimStateInfo;
 
-			// Sync the current "Hit ?" state. 
+			// sync the health
+			intSyncHealth = intHealthSelf;
+			bstStream.Serialize(ref intSyncHealth);
+
+			// Sync the current "Hit ?" state. /!\ MUST BE THE LAST /!\
 			if(blnHits){
 				blnSyncIsHit = blnHits;
 				bstStream.Serialize(ref blnSyncIsHit);
 				blnHits = false;
 			}
 
-			// sync the health
-			intSyncHealth = intHealthSelf;
-			bstStream.Serialize(ref intSyncHealth);
 		}
 
 		// When the software is reading, obtains the serialized position and rotation of the character and applies
@@ -232,15 +227,15 @@ public class FighterController : MonoBehaviour {
 			bstStream.Serialize(ref intSyncAnimation);
 			intAnimOtherState = intSyncAnimation;
 
-			//Sync the "Hit ?" state
+			// sync the health
+			bstStream.Serialize(ref intSyncHealth);
+			intHealthOpponent = intSyncHealth;
+
+			//Sync the "Hit ?" state /!\ MUST BE THE LAST /!\
 			bstStream.Serialize(ref blnSyncIsHit);
 			if(blnSyncIsHit){
 				blnIsHit = blnSyncIsHit;
 			}
-
-			// sync the health
-			bstStream.Serialize(ref intSyncHealth);
-			intHealthOpponent = intSyncHealth;
 		}
 	}
 
