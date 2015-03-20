@@ -103,6 +103,9 @@ public class FighterController : MonoBehaviour {
 	void Update ()
 	{
 
+		Debug.Log (blnIsHit);
+		Debug.Log (blnHits);
+
 		// Idle management: as soon as no key press is detected, wait for a set number of frames 
 		// and then change for the next state
 		if(!Input.anyKey){
@@ -163,11 +166,13 @@ public class FighterController : MonoBehaviour {
 	// Param.: None
 	// *******************************************************************
 	void OnSerializeNetworkView(BitStream bstStream, NetworkMessageInfo nmiInfo){
-		Vector3 v3SyncPosition = Vector3.zero;
-		Vector3 v3SyncRotation = Vector3.zero;
-		int intSyncAnimation = 0;
-		int intSyncHealth = 100;
-		bool blnSyncIsHit = false;
+		Vector3 v3SyncPosition	= Vector3.zero;
+		Vector3 v3SyncRotation	= Vector3.zero;
+		int intSyncAnimation	= 0;
+		int intSyncHealth		= 100;
+		bool blnSyncIsHit		= false;
+
+		Debug.Log (blnSyncIsHit);
 
 		// When the software is writing, gets the current position and rotation of the character and serializes it,
 		// thus effectively sending it in a two-step process to the other player
