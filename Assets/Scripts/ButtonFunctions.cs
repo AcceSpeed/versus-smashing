@@ -10,7 +10,7 @@ using System.Collections;
 
 public class ButtonFunctions : MonoBehaviour {
 
-	private const int INT_TIMER_REFRESH = 500;
+	private const int INT_TIMER_REFRESH = 50;
 
 	public GameObject GObjRoomsContainer;
 	public GameObject GObjRoomButton;
@@ -20,7 +20,7 @@ public class ButtonFunctions : MonoBehaviour {
 	private GameObject[] buttonsToDestroy;			//Used to get all the buttons that will be destroyed upon refresh
 
 
-	public GameObject roomButtonInstantiate;
+	private GameObject roomButtonInstantiate;
 	private int intButtonDecal = 10;
 	private int intButtonMultiple = 0;
 	private int intTimerStatus = INT_TIMER_REFRESH;

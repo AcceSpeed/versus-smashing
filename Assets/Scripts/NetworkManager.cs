@@ -72,6 +72,8 @@ public class NetworkManager : MonoBehaviour {
 	// *******************************************************************
 	public static void FindOpponent (){
 
+		RefreshHostList();
+
 		//If the hostList actually contains something
 		if (hostList != null) {
 			//checks the avaliability of the hosts

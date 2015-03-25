@@ -13,7 +13,7 @@ public class FighterController : MonoBehaviour {
 
 
 	// variables
-	public int intToIdle	= 100;		// Const. used to define the time before IDLE starts
+	public int intToIdle	= 100;	// Const. used to define the time before IDLE starts
 	public int intToBoredom	= 800;	// Const. used to define the time before boring state starts
 
 	public int intMaximumSpeed;		// Maximum speed of the player
@@ -102,6 +102,9 @@ public class FighterController : MonoBehaviour {
 	// *******************************************************************
 	void Update ()
 	{
+
+		Debug.Log(MainController.blnMatchOver);
+
 		// Idle management: as soon as no key press is detected, wait for a set number of frames 
 		// and then change for the next state
 		if(!Input.anyKey){
@@ -239,6 +242,14 @@ public class FighterController : MonoBehaviour {
 		}
 	}
 
+	// *******************************************************************
+	// Function called when this object is destroyed
+	// *******************************************************************
+	void OnDestroy(){
+		//As the player is destroyed, the round is over 
+		//MainController.blnMatchOver = true;
+	}
+
 	//////////////////////// PRIVATE FUNCTIONS /////////////////////////// 
 
 	// *******************************************************************
@@ -249,7 +260,6 @@ public class FighterController : MonoBehaviour {
 	// *******************************************************************
 	private void InputMovement(){
 		if (anim && !MainController.blnMatchOver) {
-
 			// Get the current state of the animation
 			intAnimStateInfo = anim.GetCurrentAnimatorStateInfo(0).nameHash;
 

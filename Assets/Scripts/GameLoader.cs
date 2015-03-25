@@ -25,12 +25,15 @@ public class GameLoader : MonoBehaviour {
 
 	private GameObject[] playersToDestroy;			//Used to get all the objects that will be destroyed upon start
 
-	public static bool blnResetStage = false;		//Used to reset the stage once the two softwares are connected
+	public static bool blnResetStage;		//Used to reset the stage once the two softwares are connected
 
 	// *******************************************************************
 	// Function called at the instantiation of the class
 	// *******************************************************************
 	void Start(){
+
+		blnResetStage = false;
+
 		sldLifePlayer1.value = 100;
 		sldLifePlayer2.value = 100;
 
@@ -99,7 +102,6 @@ public class GameLoader : MonoBehaviour {
 
 			NetViewPlayer2 = player2.networkView.viewID;
 		}
-
 	}
 
 	// *******************************************************************
@@ -110,6 +112,9 @@ public class GameLoader : MonoBehaviour {
 	// Param.: None
 	// *******************************************************************
 	private void ResetStage(){
+
+		Application.LoadLevel("Arena");
+		/*
 		blnResetStage = false;
 
 		//Finds all the objects tagged with "Player"
@@ -122,5 +127,6 @@ public class GameLoader : MonoBehaviour {
 
 		//Spawns the two fighters
 		SpawnPlayer (MainController.blnIsHost);
+		*/
 	}
 }

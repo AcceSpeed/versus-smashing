@@ -11,8 +11,6 @@ public class FallCollider : MonoBehaviour {
 
 	// When an object enters in contact with the zone, it's destroyed
 	void OnTriggerEnter(Collider other){
-		Destroy (other.gameObject);
-		//As only a player-controlled character is supposed to fall, and would die doing so, the round is over 
-		MainController.blnMatchOver = true;
+		Network.Destroy(other.gameObject);
 	}
 }
