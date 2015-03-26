@@ -176,7 +176,7 @@ public class ButtonFunctions : MonoBehaviour {
 					//Button instantiation with the text
 					roomButtonInstantiate.transform.SetParent(GObjRoomsContainer.transform, false);
 					roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonGap ;
-					roomButtonInstantiate.GetComponentInChildren<Text>().text = host.gameName   ;
+					roomButtonInstantiate.GetComponentInChildren<Text>().text = host.gameName;
 
 					Button roomButton = roomButtonInstantiate.GetComponent<Button>();
 					roomButton.onClick.AddListener(() => NetworkManager.JoinServer(host));
@@ -195,7 +195,6 @@ public class ButtonFunctions : MonoBehaviour {
 	/// Param.: None
 	// *******************************************************************
 	public void ChooseName(){
-
 		//If the name is not an empty string, store it and activates the second UI part
 		if (txtPlayerName.text != "") {
 			MainController.strPlayerName = txtPlayerName.text;

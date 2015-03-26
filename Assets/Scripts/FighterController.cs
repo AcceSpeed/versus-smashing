@@ -5,6 +5,7 @@
 // But : Player and animations controller script
 //*********************************************************
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class FighterController : MonoBehaviour {
@@ -19,6 +20,8 @@ public class FighterController : MonoBehaviour {
 	public int intMaximumSpeed;		// Maximum speed of the player
 	public int intJumpForce;		// Vertical force coefficient applied on a jump
 
+	public GameObject gobjDisplayText;	// Text to display in the screen
+
 	public static int intHealthSelf		= 100;	// Health of the player
 	public static int intHealthOpponent	= 100;	// Health of the opponent
 
@@ -28,7 +31,7 @@ public class FighterController : MonoBehaviour {
 	private int intAnimOtherState;		// Animation of the opponent
 	private int intAnimOldOtherState;	// Animation of the opponent
 
-	private float fltLightStrikeRange	= 0f;		// range of the Light Strike
+	private float fltLightStrikeRange	= 0f;	// range of the Light Strike
 	private float fltHeavyStrikeRange	= 0.5f;	// range of the Heavy Strike
 	private float fltSpecialStrikeRange	= 0.5f;	// range of the Special Strike
 
@@ -49,8 +52,6 @@ public class FighterController : MonoBehaviour {
 	private Vector3 v3SyncStartPosition	= Vector3.zero;		// initial position of the player
 	private Vector3 v3SyncEndPosition	= Vector3.zero;		// final position of the player
 
-		
-
 	//These variables store the ID of the animation states (determined by name)
 	static int intTauntID			= Animator.StringToHash ("Base.Taunt");
 	static int intHitID				= Animator.StringToHash ("Base.Hit");
@@ -68,11 +69,10 @@ public class FighterController : MonoBehaviour {
 	static int intWalkID			= Animator.StringToHash ("Base.Walk");
 	static int intRunID				= Animator.StringToHash ("Base.Run");
 	static int intBoredomID			= Animator.StringToHash ("Base.Boredom");
-
+	static int intEntryID			= Animator.StringToHash ("Base.Entry");
 
 	//Not used (currently)
 	/*
-	static int intEntryID			= Animator.StringToHash ("Base.Entry");
 	static int intThrowID			= Animator.StringToHash ("Base.Throw");
 	static int intHoldID			= Animator.StringToHash ("Base.Hold");
 	static int intUltimateStrikeID	= Animator.StringToHash ("Base.UltStrike");
@@ -88,6 +88,10 @@ public class FighterController : MonoBehaviour {
 		//Gets the Animator from Unity, will be used later
 		anim = GetComponent<Animator>();
 
+		if(MainController.intRound == 1 && Network.connections.Length == 2){
+			anim.Play ("Entry");
+		}
+
 		// set the health at max
 		intHealthSelf		= 100;
 		intHealthOpponent	= 100;
@@ -102,12 +106,9 @@ public class FighterController : MonoBehaviour {
 	// *******************************************************************
 	void Update ()
 	{
-
-		Debug.Log(MainController.blnMatchOver);
-
 		// Idle management: as soon as no key press is detected, wait for a set number of frames 
 		// and then change for the next state
-		if(!Input.anyKey){
+		if(!Input.anyKey && GameController.blnInPlay){
 
 			// We shall stay in Fighting IDLE as long as inCountToIdle is below intToIdle
 			if(intCountToIdle < intToIdle){
@@ -173,6 +174,7 @@ public class FighterController : MonoBehaviour {
 
 		// When the software is writing, gets the current position and rotation of the character and serializes it,
 		// thus effectively sending it in a two-step process to the other player
+		//!\ They must be in the same order /!\\
 		if(bstStream.isWriting){
 
 			// Position
@@ -259,7 +261,7 @@ public class FighterController : MonoBehaviour {
 	// Param.: None
 	// *******************************************************************
 	private void InputMovement(){
-		if (anim && !MainController.blnMatchOver) {
+		if (anim && GameController.blnInPlay) {
 			// Get the current state of the animation
 			intAnimStateInfo = anim.GetCurrentAnimatorStateInfo(0).nameHash;
 

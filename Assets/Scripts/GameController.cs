@@ -8,35 +8,56 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameLoader : MonoBehaviour {
+public class GameController : MonoBehaviour {
 	
 
 	//Variables
-	public GameObject playerPrefabSusan;			//Prefab of the fighter
+	public GameObject playerPrefabSusan;			// Prefab of the fighter
 
-	public static NetworkViewID NetViewPlayer1;		//NetworkView of the first fighter
-	public static NetworkViewID NetViewPlayer2;		//NetworkView of the 2nd fighter 
+	public static NetworkViewID NetViewPlayer1;		// NetworkView of the first fighter
+	public static NetworkViewID NetViewPlayer2;		// NetworkView of the 2nd fighter 
 
-	public Slider sldLifePlayer1;	// life of player 1
-	public Slider sldLifePlayer2;	// life of player 2
+	public static GameObject player1;				// GameObject of the first player
+	public static GameObject player2;				// GameObject of the 2nd player
 
-	private Vector3 playerSpawnPosition;			//Spawn position
-	private Quaternion playerSpawnRotation;			//Spawn rotation
+	public static bool blnResetStage;				// Used to reset the stage once the two softwares are connected
+	public static bool blnInPlay;					// if the game is in play
+	
+	public Text txtGameText;						// Text displayed on the screen
+	public Text txtRoundText;						// Round we are at
 
-	private GameObject[] playersToDestroy;			//Used to get all the objects that will be destroyed upon start
+	public Slider sldLifePlayer1;					// life of player 1
+	public Slider sldLifePlayer2;					// life of player 2
 
-	public static bool blnResetStage;		//Used to reset the stage once the two softwares are connected
+	private Vector3 playerSpawnPosition;			// Spawn position
+	private Quaternion playerSpawnRotation;			// Spawn rotation
+
+	private GameObject[] playersToDestroy;			// Used to get all the objects that will be destroyed upon start
 
 	// *******************************************************************
 	// Function called at the instantiation of the class
 	// *******************************************************************
 	void Start(){
 
+		// Initialisation of variables
 		blnResetStage = false;
 
 		sldLifePlayer1.value = 100;
 		sldLifePlayer2.value = 100;
 
+		// Set the round displayed in the UI
+		txtRoundText.text = MainController.intRound.ToString();
+
+		// If two people are in the arena, do all the start
+		if(Network.connections.Length == 1){
+			blnInPlay = false;
+			StartCoroutine("StartMatch");
+		}
+		else{
+			blnInPlay = true;
+		}
+
+		// Spawn the player
 		SpawnPlayer (MainController.blnIsHost);
 	}
 
@@ -44,6 +65,7 @@ public class GameLoader : MonoBehaviour {
 	// Function called at each game frame
 	// *******************************************************************
 	void Update(){
+
 		if (blnResetStage) {
 			ResetStage();
 		}
@@ -67,66 +89,75 @@ public class GameLoader : MonoBehaviour {
 	// *******************************************************************
 	private void SpawnPlayer(bool blnHost){
 
-		//In the case where the software is the one considered as the server, spawns his character facing the right, on the left part of the stage
+		// In the case where the software is the one considered as the server
+		// spawns his character facing the right, on the left part of the stage
 		if (blnHost) {
 
-			//Set the position and rotation
+			// Set the position and rotation
 			playerSpawnPosition = new Vector3 (-20f, 5.5f, 0f);
 			playerSpawnRotation.eulerAngles = new Vector3 (0, 90, 0);
 
-			//Instantiate the prefab
-			GameObject player1 = Network.Instantiate (
+			// Instantiate the prefab
+			player1 = Network.Instantiate (
 				playerPrefabSusan,
 				playerSpawnPosition,
 				playerSpawnRotation,
 				1
 			) as GameObject;
 
-			NetViewPlayer1 = player1.networkView.viewID;
-
-
-		//In the case where the software is the one considered as the client, spawns his character facing the left, on the right part of the stage
+		// In the case where the software is the one considered as the client
+		// spawns his character facing the left, on the right part of the stage
 		} else {
 
-			//Set the position and rotation
+			// Set the position and rotation
 			playerSpawnPosition = new Vector3 (20f, 5.5f, 0f);
 			playerSpawnRotation.eulerAngles = new Vector3 (0, -90, 0);
 
-			//Instantiate the prefab
-			GameObject player2 = Network.Instantiate (
+			// Instantiate the prefab
+			player2 = Network.Instantiate (
 				playerPrefabSusan,
 				playerSpawnPosition,
 				playerSpawnRotation,
 				1
 			) as GameObject;
-
-			NetViewPlayer2 = player2.networkView.viewID;
 		}
+	}
+	
+	// *******************************************************************
+	// Nom : StartMatch
+	// But : Handle the management of the UI for the start of a match
+	// Retour: IEnumerator
+	// Param.: None
+	// *******************************************************************
+	private IEnumerator StartMatch(){
+
+		// prepare the display for the current round
+		txtGameText.text = "Round " + MainController.intRound.ToString();
+
+		yield return new WaitForSeconds(5);
+
+		// show the first text (Round x)
+		txtGameText.gameObject.SetActive(true);
+
+		yield return new WaitForSeconds(2);
+
+		// change the text and let the players fight
+		blnInPlay = true;
+		txtGameText.text = "Start !";
+
+		// fade out the text
+		txtGameText.CrossFadeAlpha(0,3,true);
 	}
 
 	// *******************************************************************
 	// Nom : ResetStage
-	// But : Resetting the stage once both of the softwares are ready and connected 
-	//(since the first one, aka the server, will have his game starting as a pratice right at the start)
+	// But : Resetting the stage (called once both of the softwares are ready and connected 
+	// since the first one, aka the server, will have his game starting as a pratice right at the start)
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
 	private void ResetStage(){
 
 		Application.LoadLevel("Arena");
-		/*
-		blnResetStage = false;
-
-		//Finds all the objects tagged with "Player"
-		playersToDestroy = GameObject.FindGameObjectsWithTag ("Player");
-
-		//Destroys them
-		foreach (GameObject player in playersToDestroy) {
-			Destroy(player);
-		}
-
-		//Spawns the two fighters
-		SpawnPlayer (MainController.blnIsHost);
-		*/
 	}
 }

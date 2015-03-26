@@ -120,7 +120,7 @@ public class NetworkManager : MonoBehaviour {
 	// Param.: None
 	// *******************************************************************
 	void OnPlayerConnected(NetworkPlayer player){
-		GameLoader.blnResetStage = true;
+		GameController.blnResetStage = true;
 	}
 
 	// *******************************************************************

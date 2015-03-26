@@ -28,14 +28,15 @@ public class MainController : MonoBehaviour {
 	public const string STR_QUEUE_TYPE_MATCH = "Match";
 	public const string STR_QUEUE_TYPE_TRAIN = "Train";
 
-	//Variables
+	//Variables 
 
 	public static Text txtPlayerName;			// Player's Name
 
-	public static bool blnMatchOver;			//Used when a round is over
-	public static string strPlayerName = "";	//Player's name, entered at the launch and stored for use in the Display Rooms
+	public static int intRound = 1;				// Round we are at
+	public static bool blnMatchOver;			// Used when a round is over
+	public static string strPlayerName = "";	// Player's name, entered at the launch and stored for use in the Display Rooms
 
-	public static bool blnIsHost;				//Used to know if the current software is a server or a client for that game
+	public static bool blnIsHost;				// Used to know if the current software is a server or a client for that game
 
 	// *******************************************************************
 	// Function called at the instantiation of the class
