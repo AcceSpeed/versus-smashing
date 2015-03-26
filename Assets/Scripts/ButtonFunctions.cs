@@ -7,24 +7,33 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ButtonFunctions : MonoBehaviour {
 
+	// Constants
+	private const string STR_UI_NAME_LOGIN		= "Login";
+	private const string STR_UI_NAME_MENU		= "Menu";
+	private const string STR_UI_NAME_SETTINGS	= "Settings";
+	private const string STR_UI_NAME_CREDITS	= "Credits";
+	private const string STR_UI_NAME_EXIT		= "ExitConfirm";
+
 	private const int INT_TIMER_REFRESH = 50;
 
-	public GameObject GObjRoomsContainer;
-	public GameObject GObjRoomButton;
-	public GameObject[] UIElements;
-	public Text txtPlayerName;
+	public Text txtPlayerName;						// Name written by the player
+	public GameObject GObjRoomsContainer;			// Container of the rooms
+	public GameObject GObjRoomButton;				// Button prefab to instantiate
+	public GameObject[] UIElements;					// Array of the UI elements
 
+	private Dictionary<string, int> UINumByName;	// Dictionnary of UInames and index
 	private GameObject[] buttonsToDestroy;			//Used to get all the buttons that will be destroyed upon refresh
 
 
-	private GameObject roomButtonInstantiate;
-	private int intButtonDecal = 10;
-	private int intButtonMultiple = 0;
-	private int intTimerStatus = INT_TIMER_REFRESH;
-	private string strNameRoomToJoin;
+	private GameObject roomButtonInstantiate;		// Instantiation of a button
+	private int intButtonGap = 10;					// Gap between each button
+	private int intButtonMultiple = 0;				// Step of the button we are at (for decal)
+	private int intTimerStatus = INT_TIMER_REFRESH;	// Increment for
+	private string strNameRoomToJoin;				//
 
 
 	// *******************************************************************
@@ -34,8 +43,15 @@ public class ButtonFunctions : MonoBehaviour {
 
 		//In the case where the scene loaded is the Main Menu, activates only the second UI part
 		if (Application.loadedLevelName == "MainMenu") {
-			UIElements [0].SetActive (true);
-			UIElements [1].SetActive (false);
+
+			// Instantiate and full in the dictionnary of UI Elements
+			UINumByName = new Dictionary<string, int>();
+
+			for (int i = 0; i < UIElements.Length; i++) {
+				UINumByName.Add(UIElements[i].name,i);
+			}
+
+			ActivateMenu(STR_UI_NAME_LOGIN);
 		}
 	}
 
@@ -44,12 +60,12 @@ public class ButtonFunctions : MonoBehaviour {
 	// *******************************************************************
 	void Update(){
 
-		if(UIElements[0].activeSelf && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))){
+		if(GetUIElement(STR_UI_NAME_LOGIN).activeSelf && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))){
 			ChooseName();
 		}
 
 		//When the Main Menu is loaded, start to refresh the DisplayRooms function every 50 frames (defined by a const.)
-		if (Application.loadedLevelName == "MainMenu" && UIElements[1].activeSelf) {
+		if (Application.loadedLevelName == "MainMenu" && GetUIElement(STR_UI_NAME_MENU).activeSelf) {
 			if(intTimerStatus == INT_TIMER_REFRESH){
 				DisplayRooms();
 				intTimerStatus = 0;
@@ -59,50 +75,77 @@ public class ButtonFunctions : MonoBehaviour {
 	}
 
 	// *******************************************************************
-	// Nom : QuitGame
-	// But : Exit the application when the button is pressed
-	// Retour: Void
-	// Param.: None
+	/// Nom : QuitGame
+	/// But : Exit the application when the button is pressed
+	/// Retour: Void
+	/// Param.: None
 	// *******************************************************************
 	public void QuitGame(){
 		Application.Quit();
 	}
 
 	// *******************************************************************
-	// Nom : MatchMaking
-	// But : Sets up the match by searching for an opponent when the button is pressed
-	// Retour: Void
-	// Param.: None
+	/// Nom : MatchMaking
+	/// But : Sets up the match by searching for an opponent when the button is pressed
+	/// Retour: Void
+	/// Param.: None
 	// *******************************************************************
 	public void MatchMaking(){
 		NetworkManager.FindOpponent();
 	}
 
 	// *******************************************************************
-	// Nom : CreateGame
-	// But : 
-	// Retour: Void
-	// Param.: None
+	/// Nom : CreateGame
+	/// But : Create a room for players to join (displayed in the right)
+	/// Retour: Void
+	/// Param.: None
 	// *******************************************************************
 	public void CreateGame (){
 		NetworkManager.StartServer (MainController.STR_QUEUE_TYPE_SIMPLE);
 	}
 
 	// *******************************************************************
-	// Nom : TrainingGame
-	// But : 
-	// Retour: Void
-	// Param.: None
+	/// Nom : TrainingGame
+	/// But : Join a room alone for training
+	/// Retour: Void
+	/// Param.: None
 	// *******************************************************************
 	public void TrainingGame (){
 		NetworkManager.StartServer (MainController.STR_QUEUE_TYPE_TRAIN);
 	}
 
 	// *******************************************************************
-	// Nom : DisplayRooms
-	// But : Create buttons corresponding to the active game rooms
-	// Retour: Void
-	// Param.: None
+	/// Nom : ActiveMenu
+	/// But : Activate the UIElement to display (Title always showed)
+	/// Retour: Void
+	/// Param.: STRING strUIName : Name of the element to activate
+	// *******************************************************************
+	private void ActivateMenu (string strUIName){
+		foreach (GameObject gobjUIElement in UIElements) {
+			if(gobjUIElement.name == strUIName){
+				gobjUIElement.SetActive(true);
+			}
+			else{
+				gobjUIElement.SetActive(false);
+			}
+		}
+	}
+
+	// *******************************************************************
+	/// Nom : GetUIElement
+	/// But : Activate the UIElement to display (Title always showed)
+	/// Retour: Void
+	/// Param.: STRING strUIName : Name of the element to activate
+	// *******************************************************************
+	private GameObject GetUIElement (string strUIName){
+		return UIElements[UINumByName[strUIName]];
+	}
+
+	// *******************************************************************
+	/// Nom : DisplayRooms
+	/// But : Create buttons corresponding to the active game rooms
+	/// Retour: Void
+	/// Param.: None
 	// *******************************************************************
 	private void DisplayRooms (){
 
@@ -132,7 +175,7 @@ public class ButtonFunctions : MonoBehaviour {
 
 					//Button instantiation with the text
 					roomButtonInstantiate.transform.SetParent(GObjRoomsContainer.transform, false);
-					roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonDecal ;
+					roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonGap ;
 					roomButtonInstantiate.GetComponentInChildren<Text>().text = host.gameName   ;
 
 					Button roomButton = roomButtonInstantiate.GetComponent<Button>();
@@ -146,10 +189,10 @@ public class ButtonFunctions : MonoBehaviour {
 
 
 	// *******************************************************************
-	// Nom : ChooseName
-	// But : Gets the name entered by the player and switch for the main menu
-	// Retour: Void
-	// Param.: None
+	/// Nom : ChooseName
+	/// But : Gets the name entered by the player and switch for the main menu
+	/// Retour: Void
+	/// Param.: None
 	// *******************************************************************
 	public void ChooseName(){
 
@@ -157,8 +200,7 @@ public class ButtonFunctions : MonoBehaviour {
 		if (txtPlayerName.text != "") {
 			MainController.strPlayerName = txtPlayerName.text;
 
-			UIElements [0].SetActive (false);
-			UIElements [1].SetActive (true);
+			ActivateMenu(STR_UI_NAME_MENU);
 		}
 	}
 }

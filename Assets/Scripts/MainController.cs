@@ -15,6 +15,7 @@
 //*********************************************************
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MainController : MonoBehaviour {
@@ -28,6 +29,8 @@ public class MainController : MonoBehaviour {
 	public const string STR_QUEUE_TYPE_TRAIN = "Train";
 
 	//Variables
+
+	public static Text txtPlayerName;			// Player's Name
 
 	public static bool blnMatchOver;			//Used when a round is over
 	public static string strPlayerName = "";	//Player's name, entered at the launch and stored for use in the Display Rooms
