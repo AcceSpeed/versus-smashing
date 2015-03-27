@@ -17,7 +17,6 @@ public class NetworkManager : MonoBehaviour {
 
 	public static HostData[] hostList;	//Used to store the informations about all the active "matches" (rooms) registered on the MasterServer for a defined game
 
-
 	// *******************************************************************
 	// Nom : StartServer
 	// But : Registering the software on the MasterServer as an active game-hosting server
@@ -31,7 +30,9 @@ public class NetworkManager : MonoBehaviour {
 
 		//Initialize a room on the Unity Master Server, using the max. number of players, the port which will be used, the NAT options, 
 		//the game name, and the name of the player (obtained on login) as the name of the room
-		Network.InitializeServer (2, 25000, !Network.HavePublicAddress ());
+		bool blnUseNat = /*!Network.HavePublicAddress ()*/ true;
+
+		Network.InitializeServer (2, 25000, blnUseNat);
 		MasterServer.RegisterHost (STR_GAME_NAME, MainController.strPlayerName, strQueueType);
 
 		//When registreing, the software becomes a server, then loads the game
@@ -58,8 +59,13 @@ public class NetworkManager : MonoBehaviour {
 	// *******************************************************************
 	public static void JoinServer(HostData hostData)
 	{
+		print (hostData.gameName);
+
 		//Connect to the selected host (taken from the Hostlist)
 		Network.Connect(hostData);
+
+		print(Network.isClient);
+
 		//Thus the software isn't a host itself
 		MainController.blnIsHost = false;
 	}
@@ -143,5 +149,4 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Application.LoadLevel("MainMenu");
 	}
-	
 }

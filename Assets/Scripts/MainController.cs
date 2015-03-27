@@ -47,8 +47,5 @@ public class MainController : MonoBehaviour {
 		DontDestroyOnLoad (this);
 
 		blnMatchOver = false;
-
-		//Sets the gravity that will be used for the game
-		Physics.gravity = new Vector3(0f,-50f,0f);
 	}
 }

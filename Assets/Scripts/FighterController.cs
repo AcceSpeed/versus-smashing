@@ -140,21 +140,30 @@ public class FighterController : MonoBehaviour {
 			intCountToBoredom = 0;
 		}
 
-		// Player object (Mine / Not mine) management
-		if (networkView.isMine)
-		{
-			// If the character is mine, get his current distance from the other character
-			fltPositionDelta = Mathf.Abs(transform.position.x - fltPositionOpponent);
+		// if connected
+		if(Network.connections.Length == 1){
 
-			// If the character is mine, it will react to key presses
+			// Player object (Mine / Not mine) management
+			if (networkView.isMine)
+			{
+				// If the character is mine, get his current distance from the other character
+				fltPositionDelta = Mathf.Abs(transform.position.x - fltPositionOpponent);
+				
+				// If the character is mine, it will react to key presses
+				InputMovement();
+			}
+			else
+			{
+				// If it ain't mine, it will move accordingly to the other player's key presses
+				// (and his position will appear here)
+				SyncedMovement();
+			}
+		}
+		else{
+			// play the character only
 			InputMovement();
 		}
-		else
-		{
-			// If it ain't mine, it will move accordingly to the other player's key presses
-			// (and his position will appear here)
-			SyncedMovement();
-		}
+
 
 	}
 

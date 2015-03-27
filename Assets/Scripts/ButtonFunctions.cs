@@ -33,7 +33,7 @@ public class ButtonFunctions : MonoBehaviour {
 	private int intButtonGap = 10;					// Gap between each button
 	private int intButtonMultiple = 0;				// Step of the button we are at (for decal)
 	private int intTimerStatus = INT_TIMER_REFRESH;	// Increment for
-	private string strNameRoomToJoin;				//
+	private string strNameRoomToJoin;				// 
 
 
 	// *******************************************************************
@@ -167,7 +167,7 @@ public class ButtonFunctions : MonoBehaviour {
 			foreach (var host in NetworkManager.hostList) {
 
 				//If, of course, they are not matchmaking rooms or training rooms
-				if(host.comment==MainController.STR_QUEUE_TYPE_SIMPLE){
+				if(host.comment==MainController.STR_QUEUE_TYPE_SIMPLE && host.connectedPlayers < 2){
 				
 					roomButtonInstantiate = Instantiate(
 						GObjRoomButton
