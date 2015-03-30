@@ -18,7 +18,7 @@ public class ButtonFunctions : MonoBehaviour {
 	private const string STR_UI_NAME_CREDITS	= "Credits";
 	private const string STR_UI_NAME_EXIT		= "ExitConfirm";
 
-	private const int INT_TIMER_REFRESH = 50;
+	private const int INT_TIMER_REFRESH = 100;
 
 	public Text txtPlayerName;						// Name written by the player
 	public GameObject GObjRoomsContainer;			// Container of the rooms
@@ -32,9 +32,15 @@ public class ButtonFunctions : MonoBehaviour {
 	private GameObject roomButtonInstantiate;		// Instantiation of a button
 	private int intButtonGap = 10;					// Gap between each button
 	private int intButtonMultiple = 0;				// Step of the button we are at (for decal)
-	private int intTimerStatus = INT_TIMER_REFRESH;	// Increment for
-	private string strNameRoomToJoin;				// 
+	private int intTimerStatus = INT_TIMER_REFRESH;	// Increment for the refresh of the
 
+
+	void Awake (){
+		// Instantiate the dictionnary of UI Elements
+		UINumByName = new Dictionary<string, int>();
+
+
+	}
 
 	// *******************************************************************
 	// Function called at the instantiation of the class
@@ -44,7 +50,7 @@ public class ButtonFunctions : MonoBehaviour {
 		//In the case where the scene loaded is the Main Menu, activates only the second UI part
 		if (Application.loadedLevelName == "MainMenu") {
 
-			// Instantiate and full in the dictionnary of UI Elements
+			// Fill in the dictionnary of UI Elements
 			UINumByName = new Dictionary<string, int>();
 
 			for (int i = 0; i < UIElements.Length; i++) {

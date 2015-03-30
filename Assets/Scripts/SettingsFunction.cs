@@ -21,21 +21,44 @@ public class SettingsFunction : MonoBehaviour {
 	public Text txtResolution;
 
 	// resolution of the game
-	private int intScreenWidth;
-	private int intScreenHeight;
 	private Resolution[] arr_resolutions ;
+	
+	private int intPrefScreenWidth;
+	private int intPrefScreenHeight;
+	private int intResolution;
+	private float fltPrefVolume;
+	
+	private bool blnPrefFullScreen;
 
+	void Awake(){
+
+		arr_resolutions = Screen.resolutions;					// Get all avaliable resolutions
+		sldResolution.maxValue = arr_resolutions.Length - 1;	// Set the maximum of slide
+
+		// Get the player prefs
+		blnPrefFullScreen = PlayerPrefs.GetInt("blnFullScreen", 0) == 1;
+
+		intPrefScreenWidth = PlayerPrefs.GetInt("intPrefScreenWidth",  arr_resolutions [0].width);
+		intPrefScreenHeight = PlayerPrefs.GetInt("intPrefScreenHeight",  arr_resolutions [0].height);
+
+		intResolution = PlayerPrefs.GetInt("intResolution", 0);
+
+		fltPrefVolume = PlayerPrefs.GetInt("fltPrefVolume", 100);
+	}
 
 	// *******************************************************************
 	// Function called at the instantiation of the class
 	// *******************************************************************
 	void Start (){
-		arr_resolutions = Screen.resolutions;					// Get all avaliable resolutions
-		sldResolution.maxValue = arr_resolutions.Length - 1;	// Set the maximum of slide
 
-		// default resolution to minimal
-		Screen.SetResolution (arr_resolutions [0].width, arr_resolutions [0].height, false);
-		txtResolution.text = arr_resolutions [0].width + "x" + arr_resolutions [0].height;	
+		// set the resolution
+		Screen.SetResolution (intPrefScreenWidth, intPrefScreenHeight, blnPrefFullScreen);
+		txtResolution.text = intPrefScreenWidth + "x" + intPrefScreenHeight;
+		sldResolution.value = intResolution;
+
+		if(blnPrefFullScreen){
+			tglFullscreen.isOn = true;
+		}
 	}
 
 	// *******************************************************************
@@ -47,9 +70,9 @@ public class SettingsFunction : MonoBehaviour {
 	public void ChangeVolume (){
 
 		// change the global volume
-		AudioListener.volume = sldVolume.value / 100;
+		fltPrefVolume = sldVolume.value / 100;
 
-		txtVolume.text = sldVolume.value.ToString();
+		txtVolume.text = fltPrefVolume.ToString();
 	}
 
 	// *******************************************************************
@@ -60,13 +83,33 @@ public class SettingsFunction : MonoBehaviour {
 	// *******************************************************************
 	public void ChangeResolution (){
 
-		intScreenWidth = arr_resolutions [(int) sldResolution.value].width;
-		intScreenHeight = arr_resolutions [(int) sldResolution.value].height;
+		intResolution = (int) sldResolution.value;
 
-		// set the resolution
-		Screen.SetResolution (intScreenWidth, intScreenHeight, tglFullscreen.isOn);
+		intPrefScreenWidth = arr_resolutions [intResolution].width;
+		intPrefScreenHeight = arr_resolutions [intResolution].height;
+
+		blnPrefFullScreen = tglFullscreen.isOn;
 
 		// change the label value
-		txtResolution.text = intScreenWidth + "x" + intScreenHeight;
+		txtResolution.text = intPrefScreenWidth + "x" + intPrefScreenHeight;
+	}
+
+	public void ApplyAndSave(){
+		// set the resolution and the volume
+		Screen.SetResolution (intPrefScreenWidth, intPrefScreenHeight, blnPrefFullScreen);
+		AudioListener.volume = fltPrefVolume;
+
+		//Set the Player Prefs
+		PlayerPrefs.SetInt("intPrefScreenWidth",  intPrefScreenWidth);
+		PlayerPrefs.SetInt("intPrefScreenHeight",  intPrefScreenHeight);
+
+		PlayerPrefs.SetInt("blnFullScreen", (blnPrefFullScreen ? 1 : 0));
+		
+		PlayerPrefs.SetFloat("fltPrefVolume", fltPrefVolume);
+
+		PlayerPrefs.SetInt("intResolution", intResolution);
+
+		// save the changes
+		PlayerPrefs.Save();
 	}
 }

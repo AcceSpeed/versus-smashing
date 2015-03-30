@@ -32,20 +32,47 @@ public class MainController : MonoBehaviour {
 
 	public static Text txtPlayerName;			// Player's Name
 
-	public static int intRound = 1;				// Round we are at
+	public static int intRound;					// Round we are at
 	public static bool blnMatchOver;			// Used when a round is over
-	public static string strPlayerName = "";	// Player's name, entered at the launch and stored for use in the Display Rooms
+	public static string strPlayerName;			// Player's name, entered at the launch and stored for use in the Display Rooms
 
 	public static bool blnIsHost;				// Used to know if the current software is a server or a client for that game
 
-	// *******************************************************************
-	// Function called at the instantiation of the class
-	// *******************************************************************
-	void Start () {
+	private static MainController _instance;	// instance of the MainController
 
-		//To avoid loosing informations (like the player's name), the class isn't destroyed on load of another scene
-		DontDestroyOnLoad (this);
+	public static MainController instance{
+		get{
+			if(_instance == null){
+				_instance = GameObject.FindObjectOfType<MainController>();
 
-		blnMatchOver = false;
+				//To avoid loosing informations (like the player's name), the class isn't destroyed on load of another scene
+				DontDestroyOnLoad (_instance.gameObject);
+			}
+
+			return _instance;
+		}
+	}
+
+	// *******************************************************************
+	// Function called at the instantiation of the class (before Start())
+	// *******************************************************************
+	void Awake(){
+		if(_instance == null){
+			// if it's the first instance, put it in _instance
+			_instance = this;
+			DontDestroyOnLoad(this);
+
+			// Initializations
+			blnMatchOver	= false;
+			intRound		= 1;
+			strPlayerName	= "";
+
+		}
+		else{
+			// if an instance already exists, destroy this one
+			if(this != _instance){
+				Destroy(this.gameObject);
+			}
+		}
 	}
 }
