@@ -164,6 +164,7 @@ public class ButtonFunctions : MonoBehaviour {
 			intButtonMultiple = 0;
 
 			buttonsToDestroy = GameObject.FindGameObjectsWithTag ("RoomButton");
+
 			//Destroys them
 			foreach (GameObject button in buttonsToDestroy) {
 				Destroy(button);

@@ -21,15 +21,13 @@ using System.Collections;
 public class MainController : MonoBehaviour {
 
 	//Constants
-
 	public const int INT_MAX_ROUNDS = 3;
 	
 	public const string STR_QUEUE_TYPE_SIMPLE = "Simple";
 	public const string STR_QUEUE_TYPE_MATCH = "Match";
 	public const string STR_QUEUE_TYPE_TRAIN = "Train";
 
-	//Variables 
-
+	//Variables
 	public static Text txtPlayerName;			// Player's Name
 
 	public static int intRound;					// Round we are at
@@ -40,6 +38,9 @@ public class MainController : MonoBehaviour {
 
 	private static MainController _instance;	// instance of the MainController
 
+	// *******************************************************************
+	// Constructor of the class
+	// *******************************************************************
 	public static MainController instance{
 		get{
 			if(_instance == null){

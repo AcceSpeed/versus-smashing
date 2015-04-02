@@ -11,6 +11,8 @@ public class NetworkManager : MonoBehaviour {
 
 	//Constants
 	private const string STR_GAME_NAME = "VersusSmashingNetwork";	//Specifiy the name of the game when registering a room on the MasterServer
+	private const int INT_MAX_CONNECTIONS = 2;						// maximum number of connections
+	private const int INT_PORT = 26000;								// port of the game
 
 	//Variables
 	private static string strRoomComment;	//Rooms informations can contain strings, this will be used to differenciate Matchmaking v. non-matchmaking rooms
@@ -38,7 +40,7 @@ public class NetworkManager : MonoBehaviour {
 		//the game name, and the name of the player (obtained on login) as the name of the room
 		bool blnUseNat = !Network.HavePublicAddress ();
 
-		Network.InitializeServer (2, 25000, blnUseNat);
+		Network.InitializeServer (INT_MAX_CONNECTIONS, INT_PORT, blnUseNat);
 		MasterServer.RegisterHost (STR_GAME_NAME, MainController.strPlayerName, strQueueType);
 
 		//When registreing, the software becomes a server, then loads the game
