@@ -20,6 +20,8 @@ public class ButtonFunctions : MonoBehaviour {
 
 	private const int INT_TIMER_REFRESH = 100;
 
+	//private FontManager fontManager;
+
 	public Text txtPlayerName;						// Name written by the player
 	public GameObject GObjRoomsContainer;			// Container of the rooms
 	public GameObject GObjRoomButton;				// Button prefab to instantiate
@@ -38,8 +40,6 @@ public class ButtonFunctions : MonoBehaviour {
 	void Awake (){
 		// Instantiate the dictionnary of UI Elements
 		UINumByName = new Dictionary<string, int>();
-
-
 	}
 
 	// *******************************************************************
@@ -182,7 +182,11 @@ public class ButtonFunctions : MonoBehaviour {
 					//Button instantiation with the text
 					roomButtonInstantiate.transform.SetParent(GObjRoomsContainer.transform, false);
 					roomButtonInstantiate.transform.position += Vector3.down * intButtonMultiple * intButtonGap ;
-					roomButtonInstantiate.GetComponentInChildren<Text>().text = host.gameName;
+
+					Text roomButtonText = roomButtonInstantiate.GetComponentInChildren<Text>();
+					roomButtonText.text = host.gameName;
+
+					FontManager.fontManager.ChangeFont(roomButtonText);
 
 					Button roomButton = roomButtonInstantiate.GetComponent<Button>();
 					roomButton.onClick.AddListener(() => NetworkManager.JoinServer(host));

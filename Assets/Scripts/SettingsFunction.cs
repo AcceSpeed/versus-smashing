@@ -43,7 +43,7 @@ public class SettingsFunction : MonoBehaviour {
 
 		intResolution = PlayerPrefs.GetInt("intResolution", 0);
 
-		fltPrefVolume = PlayerPrefs.GetInt("fltPrefVolume", 100);
+		fltPrefVolume = PlayerPrefs.GetFloat("fltPrefVolume", 100);
 	}
 
 	// *******************************************************************
@@ -51,8 +51,9 @@ public class SettingsFunction : MonoBehaviour {
 	// *******************************************************************
 	void Start (){
 
-		// set the resolution
+		// set the displayed values for the resolution and volume
 		Screen.SetResolution (intPrefScreenWidth, intPrefScreenHeight, blnPrefFullScreen);
+
 		txtResolution.text = intPrefScreenWidth + "x" + intPrefScreenHeight;
 		sldResolution.value = intResolution;
 
@@ -82,7 +83,7 @@ public class SettingsFunction : MonoBehaviour {
 	// Param.: None
 	// *******************************************************************
 	public void ChangeResolution (){
-
+		// change the values of the parameters
 		intResolution = (int) sldResolution.value;
 
 		intPrefScreenWidth = arr_resolutions [intResolution].width;

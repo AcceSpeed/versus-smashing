@@ -209,17 +209,22 @@ public class GameController : MonoBehaviour {
 		
 		GameObject gobjGameText;	// GameObject of the text
 		Text txtGameText;			// Text displayed on the screen
-		
+
+		// Instantiate the text to display
 		gobjGameText = Instantiate(
 			textPrefab,
 			textPrefab.transform.position,
 			textPrefab.transform.rotation
 			) as GameObject;
-		
+
+		// set it in the canvas
 		gobjGameText.transform.SetParent(GameUI.transform, false);
-		
+
+		// change the text displayed and the font
 		txtGameText			= gobjGameText.GetComponent<Text>();
 		txtGameText.text	= strTextToDisplay;
+
+		FontManager.fontManager.ChangeFont(txtGameText);
 		
 		// fade out the text
 		yield return new WaitForSeconds(1);

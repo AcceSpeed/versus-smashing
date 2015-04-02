@@ -13,9 +13,15 @@ public class NetworkManager : MonoBehaviour {
 	private const string STR_GAME_NAME = "VersusSmashingNetwork";	//Specifiy the name of the game when registering a room on the MasterServer
 
 	//Variables
-	private static string strRoomComment;		//Rooms informations can contain strings, this will be used to differenciate Matchmaking v. non-matchmaking rooms
+	private static string strRoomComment;	//Rooms informations can contain strings, this will be used to differenciate Matchmaking v. non-matchmaking rooms
 
 	public static HostData[] hostList;	//Used to store the informations about all the active "matches" (rooms) registered on the MasterServer for a defined game
+
+	void Update(){
+		Debug.Log("Is a Client : " + Network.isClient);
+		Debug.Log("Is a Server : " + Network.isServer);
+		Debug.Log("Number of connections : " + Network.connections.Length);
+	}
 
 	// *******************************************************************
 	// Nom : StartServer
@@ -25,6 +31,7 @@ public class NetworkManager : MonoBehaviour {
 	// *******************************************************************
 	public static void StartServer(string strQueueType)
 	{
+		Debug.Log ("Connection as server");
 		strRoomComment = strQueueType;
 
 		//Initialize a room on the Unity Master Server, using the max. number of players, the port which will be used, the NAT options, 
@@ -45,8 +52,7 @@ public class NetworkManager : MonoBehaviour {
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
-	public static void RefreshHostList()
-	{
+	public static void RefreshHostList(){
 		MasterServer.RequestHostList(STR_GAME_NAME);
 	}
 
@@ -56,9 +62,9 @@ public class NetworkManager : MonoBehaviour {
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
-	public static void JoinServer(HostData hostData)
-	{
+	public static void JoinServer(HostData hostData){
 		//Connect to the selected host (taken from the Hostlist)
+		Debug.Log ("Connection as client");
 		Network.Connect(hostData);
 
 		//Thus the software isn't a host itself
@@ -140,8 +146,7 @@ public class NetworkManager : MonoBehaviour {
 	// Retour: Void
 	// Param.: None
 	// *******************************************************************
-	void OnDisconnectedFromServer ()
-	{
+	void OnDisconnectedFromServer (){
 		Application.LoadLevel("MainMenu");
 	}
 }
